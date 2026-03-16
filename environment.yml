@@ -1,0 +1,24 @@
+name: musiclaude
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.13
+  - pip
+  - numpy>=1.24
+  - pandas>=2.0
+  - scikit-learn>=1.3
+  - matplotlib>=3.7
+  - seaborn>=0.12
+  - joblib>=1.3
+  - tqdm>=4.65
+  - requests>=2.31
+  # Testing
+  - pytest>=7.0
+  - pytest-cov>=4.0
+  # GPU-accelerated XGBoost (conda-forge builds with CUDA)
+  - py-xgboost-gpu
+  # pip-only packages
+  - pip:
+    - music21>=9.1
+    - ruff>=0.1

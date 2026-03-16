@@ -1,0 +1,1 @@
+"""Music theory structural validation."""
