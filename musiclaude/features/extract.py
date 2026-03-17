@@ -20,10 +20,9 @@ from musiclaude.features.coherence import extract_coherence_features
 logger = logging.getLogger(__name__)
 
 
-def extract_features_from_file(filepath: str) -> dict | None:
-    """Extract all features from a single MusicXML file."""
+def extract_features_from_score(score, filepath: str = "") -> dict | None:
+    """Extract all features from a pre-parsed music21 Score object."""
     try:
-        score = converter.parse(filepath)
         features = {"filepath": filepath}
         features.update(extract_harmonic_features(score))
         features.update(extract_melodic_features(score))
@@ -31,6 +30,16 @@ def extract_features_from_file(filepath: str) -> dict | None:
         features.update(extract_orchestration_features(score))
         features.update(extract_coherence_features(score))
         return features
+    except Exception as e:
+        logger.warning(f"Failed to extract features from {filepath}: {e}")
+        return None
+
+
+def extract_features_from_file(filepath: str) -> dict | None:
+    """Extract all features from a single MusicXML file."""
+    try:
+        score = converter.parse(filepath)
+        return extract_features_from_score(score, filepath=filepath)
     except Exception as e:
         logger.warning(f"Failed to extract features from {filepath}: {e}")
         return None
