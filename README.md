@@ -1,4 +1,4 @@
-# MusicLaude
+# Rachmaniclaude
 
 AI music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
 
@@ -127,8 +127,6 @@ Here are some highlights from our experiments — listen for yourself:
 
 *A chess game between old friends in a park — the stakes are a bottle of wine.*
 
-> "This is really quite pleasant to listen to. Its continuous and flowing, it has a strong melody, an answer response pattern between the piano and cello as they dance back and forth... 1:27 holy shit! Wow! WOW!"
-
 - Score: [`examples/the_wager.musicxml`](examples/the_wager.musicxml)
 - Audio: [`examples/the_wager.mp3`](examples/the_wager.mp3)
 - Condition: v3 canonical profile + one revision round
@@ -136,8 +134,6 @@ Here are some highlights from our experiments — listen for yourself:
 ### "The Bottle Gambit" — Cello + Piano (Experiment 010, 88/100)
 
 *Same vibe, different agent, autonomous feedback.*
-
-> "This feels like a cello concerto... the piano and cello are in lockstep. A great accompaniment. The ending segment is really quite pleasant!"
 
 - Score: [`examples/the_bottle_gambit.musicxml`](examples/the_bottle_gambit.musicxml)
 - Audio: [`examples/the_bottle_gambit.mp3`](examples/the_bottle_gambit.mp3)
@@ -147,15 +143,13 @@ Here are some highlights from our experiments — listen for yourself:
 
 *First love at 17, summer in a French village, working at a bakery.*
 
-> "The first piece to open with the clarinet! Its also the first piece that understands the clarinet at all! OH IT HAS SUCH FUN IDEAS FROM 0:38-0:47! Its like a weird carnival type thing! This is the ONLY PIECE that made me feel anything like first love, like a carousel."
-
 - Score: [`examples/matin_de_boulangerie.musicxml`](examples/matin_de_boulangerie.musicxml)
 - Audio: [`examples/matin_de_boulangerie.mp3`](examples/matin_de_boulangerie.mp3)
 - Condition: v1 PDMX profile + one revision round
 
 ### Legacy Skills
 
-The original pipeline skills (`/compose`, `/song-contract`, `/assess-quality`) still exist but are not recommended. Our experiments showed that rigid contract-to-skill pipelines consistently produce worse music than minimal prompting. See [experiment results](codex/INDEX.md) for details.
+The original pipeline skills (`/compose`, `/song-contract`, `/assess-quality`) still exist but are not recommended. Experiments showed that rigid contract-to-skill pipelines consistently produce worse music than minimal prompting. See [experiment results](codex/INDEX.md) for details.
 
 ## Analysis Dashboard
 
@@ -200,8 +194,7 @@ data/                PDMX + canonical corpora (not committed)
 
 ## The Research
 
-11 experiments over two days, 4 hypotheses rejected:
-
+11 experiments
 | Exp | What We Tested | Result |
 |-----|---------------|--------|
 | 001-004 | Feature extraction + classifier training | 60.2% accuracy, dynamics_count is #1 predictor |
