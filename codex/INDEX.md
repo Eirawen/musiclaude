@@ -1,6 +1,6 @@
 # MusicLaude Codex
 
-LLM-composed music as structured text (MusicXML), quality-assessed by feature profile comparison against high-rated distributions, iteratively improved via ranked feedback. Core thesis: feature importance from XGBoost training is stable and actionable — telling an LLM "your dynamics_count is at the 3rd percentile, target is 8" produces better music than predicting a rating.
+LLM-composed music as structured text (MusicXML), quality-assessed by feature profile comparison against canonical repertoire distributions, iteratively improved via ranked feedback. Core thesis: feature importance from XGBoost training is stable and actionable — telling an LLM "your dynamics_count is at the 3rd percentile, target is 14" produces better music than predicting a rating. Canonical repertoire (Bach, Beethoven, Mozart, Schubert, Chopin) IS definitionally good music — no human ratings needed.
 
 ## Top-Level
 
@@ -39,14 +39,16 @@ Claude Code skills: `/song-contract` → `/compose` (with profile feedback loop)
 | [compose/musicxml-reference.md](compose/musicxml-reference.md) | MusicXML generation patterns, duration math, common templates |
 | [compose/decisions.md](compose/decisions.md) | Skill design decisions |
 
-## Dataset (PDMX Analysis)
+## Dataset (PDMX + Canonical Corpora)
 
-Exploration and statistical analysis of the training data.
+Training data analysis and canonical reference corpora.
 
 | File | Purpose |
 |------|---------|
-| [dataset/pdmx-analysis.md](dataset/pdmx-analysis.md) | Full dataset analysis with plots: rating distribution, filtering rationale, genre bias, complexity profile, selection bias |
-| [dataset/pdmx-paper-notes.md](dataset/pdmx-paper-notes.md) | Notes from the PDMX paper (arXiv:2409.10831): validates our approach, 3-axis listening study design, dedup strategy, MusicRender format |
+| [dataset/pdmx-analysis.md](dataset/pdmx-analysis.md) | PDMX dataset analysis: rating distribution, filtering rationale, genre bias, selection bias |
+| [dataset/pdmx-paper-notes.md](dataset/pdmx-paper-notes.md) | Notes from the PDMX paper (arXiv:2409.10831) |
+
+**Canonical corpora** (in `data/`, not committed): OpenScore Lieder (1,462 art songs), OpenScore Orchestra (188), OpenScore Quartets (122), DCML (1,101 piano sonatas/quartets). ~2,873 pieces of definitionally good music with real notation markings. See experiment 006.
 
 ## Experiments
 
@@ -59,6 +61,7 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 | [experiments/003-performance-directives.md](experiments/003-performance-directives.md) | Disaggregated performance directives into 5 features. Binary accuracy dipped slightly but regressor R² jumped 41%. All new features in top half of importance. |
 | [experiments/004-self-computed-features.md](experiments/004-self-computed-features.md) | Replaced PDMX metadata with self-computed scale_consistency + groove_consistency, dropped complexity. Models now work on new compositions. |
 | [experiments/005-blind-abc-listening.md](experiments/005-blind-abc-listening.md) | **Blind A/B/C listening test.** 3 songs × 3 conditions. Profile feedback wins 2/3, +7.0 avg over baseline vs +1.3 for XGBoost. Profile set as default. |
+| [experiments/006-canonical-corpus-pipeline.md](experiments/006-canonical-corpus-pipeline.md) | **Canonical MusicXML corpora.** MIDI inference → MusicXML insight. MuseScore version hack, 2,873 canonical pieces, v3 profile with 12x more hairpins than PDMX. |
 
 ## Report
 

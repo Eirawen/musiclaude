@@ -95,3 +95,40 @@ Things that bit us or will bite future agents.
 **What:** Dynamics count is the strongest predictor of quality in both models (importance 0.053-0.060). But the presence of dynamics markings correlates with composer skill level, not just the dynamics themselves. A piece with "pp" slapped at the start will score higher in this feature but isn't actually better.
 
 **Impact:** The feedback loop correctly tells LLMs "add dynamics" which is good advice. But the classifier's quality prediction is inflated by this confound. Future work: normalize dynamics_count by piece length, or use dynamics_per_beat instead.
+
+---
+
+## G13: `.mscx` is NOT parseable by music21
+
+**What:** MuseScore's native `.mscx` format (XML-based) cannot be read by `music21.converter.parse()`. It throws "cannot find a format extensions for". Only `.mxl` (compressed MusicXML) and `.musicxml` work.
+
+**Fix:** Convert via `musescore3 -o output.mxl input.mscx`. See G14 for version issues.
+
+---
+
+## G14: musescore3 version check is a bypassable XML header
+
+**What:** musescore3 v3.2.3 (Ubuntu 24.04 package) refuses to open files saved with v3.6.2: "This score was saved using a newer version." The check is purely on the `<museScore version>` and `<programVersion>` XML tags, not actual format differences.
+
+**Fix:** Patch the XML before conversion:
+```python
+content = content.replace('<museScore version="3.02">', '<museScore version="3.01">')
+content = content.replace('<programVersion>3.6.2</programVersion>', '<programVersion>3.2.3</programVersion>')
+```
+Tested on 1,223 files (DCML + OpenScore Quartets): 100% success rate. Font warnings (Leland→Bravura fallback) are cosmetic only.
+
+---
+
+## G15: music21 `part.recurse()` gives measure-relative offsets
+
+**What:** `part.recurse().getElementsByClass('Note')` returns notes with offsets relative to their containing measure (0 to time_sig_beats), NOT absolute position in the piece. A 2,347-note piece showed all offsets in range 0-4.
+
+**Fix:** Use `score.flatten().getElementsByClass('Note')` for absolute offsets. Critical for any temporal analysis (windowed velocity, phrase detection, etc.).
+
+---
+
+## G16: MIDI staccato/accent inference is unreliable
+
+**What:** Piano key release naturally creates inter-note gaps that look like staccato (116-316 detected vs MusicXML median 2). Normal velocity variation looks like accents (12-69 detected vs median 0). These are MIDI performance artifacts, not notational markings.
+
+**Fix:** Only infer `dynamics_count` and `hairpin_count` from MIDI velocity. Leave staccato, accent, expression to MusicXML-source data.
