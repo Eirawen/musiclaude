@@ -1,9 +1,25 @@
 # MusicLaude
 
-Music generation and quality assessment system.
+AI music composition and quality assessment system.
+
+## Composition — The Right Way
+
+**Use `/compose-minimal`** — give a one-sentence vibe, get a score. This is the experimentally validated approach (11 experiments, best score 90/100).
+
+```
+/compose-minimal A chess game between old friends in a park
+```
+
+Key rules from our experiments:
+- **2-3 parts max** — duos (cello+piano) score avg 87. Full orchestra (6+ parts) scores avg 68. The LLM can't orchestrate.
+- **Feedback is advisory** — the model should reject suggestions that would hurt coherence
+- **One revision round** — more iterations degrade quality
+- **Don't use rigid pipelines** — no contracts, no templates, no forced iteration loops. They consistently produce worse music.
+
+The legacy skills (`/compose`, `/song-contract`, `/assess-quality`) still exist but are not recommended.
 
 ## Project Structure
-- `musiclaude/features/` - Feature extraction from MusicXML
+- `musiclaude/features/` - Feature extraction from MusicXML (42+ features)
   - `harmonic.py` - Chord vocabulary, extended chords, cadences, key stability, modulations
   - `melodic.py` - Intervals, stepwise motion, range, contour, rhythm, repetition
   - `structural.py` - Parts, duration, dynamics, tempo, time signature complexity, sections
@@ -11,47 +27,45 @@ Music generation and quality assessment system.
   - `coherence.py` - LLM-targeted: note density, rest ratio, pitch/interval entropy, melodic autocorrelation, phrase regularity, strong-beat consonance, rhythmic independence
   - `extract.py` - Pipeline: directory → DataFrame with all features
 - `musiclaude/classifier/` - Quality assessment models
-  - `profile.py` - **Primary feedback**: percentile-based comparison against high-rated PDMX distributions, ranked by feature importance
+  - `profile.py` - **Primary feedback**: percentile-based comparison, ranked by feature importance
   - `train.py` - XGBoost classifier + regressor + distribution scorer training
   - `predict.py` - QualityPredictor combining XGBoost + anomaly detection (secondary reference)
-  - `distribution.py` - Isolation Forest anomaly scorer for detecting "not real music"
+  - `distribution.py` - Isolation Forest anomaly scorer
 - `musiclaude/validator/` - Music theory structural validation
-- `musiclaude/compose/` - LLM composition pipeline (validation, feedback loop)
-- `.claude/skills/` - Claude Code skills: `/song-contract`, `/compose`, `/assess-quality`
-- `experiment/` - Blind A/B/C listening experiment (3 songs × 3 feedback conditions)
+- `musiclaude/compose/` - Feedback loop infrastructure
+- `.claude/skills/compose-minimal/` - **Recommended**: minimal vibe → compose → advisory feedback
+- `.claude/skills/compose/` - Legacy pipeline skill (not recommended)
+- `experiment/` - 11 blind listening experiments (005-011)
+- `codex/` - Decision log, experiment writeups, gotchas
+- `report/` - Full research report with analysis plots
+- `analysis/` - Exploration scripts, plots, Streamlit dashboard
+- `scripts/` - Canonical corpus extraction and analysis
 - `tests/` - Test suite (40 tests)
-- `data/` - PDMX dataset (not committed)
+- `data/` - PDMX + canonical corpora (not committed)
 - `models/` - Trained models (not committed)
 - `output/` - Generated compositions (not committed)
 
 ## Dataset
-PDMX dataset from Zenodo: https://zenodo.org/records/14648209
-- Download `PDMX.csv` (index with ratings), `mxl.tar.gz` (MusicXML files), `metadata.tar.gz`
-- Rating field: `rating` (0-5 stars, 0=unrated)
-- Key fields: song_name, rating, n_ratings, n_tracks, n_notes, genres, tags
+- **PDMX** from Zenodo: https://zenodo.org/records/14648209 — 254K MusicXML files with user ratings
+- **Canonical corpora** — 2,871 masterworks from OpenScore Lieder/Orchestra/Quartets + DCML
 
 ## Commands
 - `pip install -e ".[dev]"` - Install in dev mode
 - `pytest` - Run tests (40 tests)
 - `musiclaude-extract --data-dir data/ --output features.csv` - Extract features
 - `musiclaude-train --features features.csv --output models/` - Train classifier + distribution scorer
-
-## Composition Workflow
-1. `/song-contract` - Conversation to define what music to compose → outputs `song_contract.md`
-2. `/compose` - Generate MusicXML from contract, run profile feedback loop (up to 3 iterations), render MP3
-3. `/assess-quality` - Run additional assessment iterations if needed
+- `streamlit run analysis/dashboard.py` - Launch analysis dashboard
 
 ## Quality Assessment
-**Primary signal:** Feature Profile (`models/feature_profile.joblib`) — compares each extracted feature against high-rated PDMX distributions using percentile ranks, weighted by XGBoost feature importance. Gives ranked, specific improvement instructions (e.g., "your dynamics_count=0 is at the 3rd percentile, target median is 8").
+**Primary signal:** Feature Profile (`models/feature_profile_v3.joblib` or `models/feature_profile.joblib`) — compares each feature against reference distributions using percentile ranks, weighted by XGBoost feature importance. v3 (canonical) outperforms v1 (PDMX) under minimal prompting.
 
 **Secondary signals (reference only):**
-- XGBoost regressor/classifier — predicts ratings, but R²=0.039 on narrow rating range makes absolute scores unreliable
-- Isolation Forest distribution scorer — flags music that deviates from human-composed distributions
-
-Profile feedback was validated in a blind A/B/C experiment (2026-03-16): profile-revised compositions scored +7 points over baselines on average, vs +1.3 for XGBoost feedback. See `experiment/RESULTS.md`.
+- XGBoost regressor/classifier — R²=0.039, useful for feature importance ranking not predictions
+- Isolation Forest — flags music outside human-composed distributions
 
 ## Tech Stack
-- music21 for MusicXML parsing
-- XGBoost for quality classification
+- music21 for MusicXML parsing and score generation
+- XGBoost for quality classification + feature importance
 - scikit-learn Isolation Forest for anomaly detection
-- Claude for composition generation
+- Claude Opus for composition via Claude Code
+- MuseScore 3 CLI for audio rendering

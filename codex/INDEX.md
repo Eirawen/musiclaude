@@ -63,6 +63,10 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 | [experiments/005-blind-abc-listening.md](experiments/005-blind-abc-listening.md) | **Blind A/B/C listening test.** 3 songs × 3 conditions. Profile feedback wins 2/3, +7.0 avg over baseline vs +1.3 for XGBoost. Profile set as default. |
 | [experiments/006-canonical-corpus-pipeline.md](experiments/006-canonical-corpus-pipeline.md) | **Canonical MusicXML corpora.** MIDI inference → MusicXML insight. MuseScore version hack, 2,873 canonical pieces, v3 profile with 12x more hairpins than PDMX. |
 | [experiments/007-blind-profile-comparison.md](experiments/007-blind-profile-comparison.md) | **Blind profile comparison.** Canonical profiles (v3) vs PDMX (v1). HYPOTHESIS REJECTED — v1 won decisively. Higher targets ≠ better music when the LLM can't execute at that level. The competence ceiling problem. |
+| [experiments/008-teacher-not-grader.md](experiments/008-teacher-not-grader.md) | **Teacher not grader.** HYPOTHESIS REJECTED. Canonical wisdom in compose prompt vs baseline. Wisdom scored 41/42 features but sounded worse. Competence ceiling at the principles layer too — LLM needs melodic fundamentals before expressive sophistication. |
+| [experiments/009-minimal-prompting.md](experiments/009-minimal-prompting.md) | **Minimal prompting × profile choice.** 2×2: v1/v3 × exp5/exp9. Minimal prompting massively improved coherence. exp5 workflow still wins. v3 competitive under freedom. Clarinet writing identified as specific capability gap. |
+| [experiments/010-new-instrumentation.md](experiments/010-new-instrumentation.md) | **New instrumentation.** Cello+piano, chess game vibe. Best results in project history (85-90, avg 87.3). v3 canonical profile WINS (avg 89 vs v1's 85.5). Instrumentation is the biggest lever. Pipeline was the real enemy. |
+| [experiments/011-jrpg-free-instrumentation.md](experiments/011-jrpg-free-instrumentation.md) | **JRPG theme, free instrumentation.** All agents chose full orchestra (6-9 parts), all scored poorly (60-73). LLM can't orchestrate. Instrumentation ceiling: 2 parts good, 6+ parts bad. |
 
 ## Report
 

@@ -1,0 +1,308 @@
+{
+  "soundfonts": {
+    "FluidR3_GM": {
+      "file": "FluidR3_GM.sf2",
+      "description": "High-quality General MIDI soundfont by Frank Wen. Clean, balanced, professional.",
+      "license": "CC-BY-4.0"
+    },
+    "Timbres_of_Heaven": {
+      "file": "Timbres_of_Heaven.sf2",
+      "description": "Rich, expressive GM/GS/XG soundfont by Don Allen. Lush orchestral, warm instruments.",
+      "license": "Freeware"
+    },
+    "SalamanderGrandPiano": {
+      "file": "SalamanderGrandPiano.sf2",
+      "description": "Salamander Grand Piano V3. Superb 48kHz Yamaha C5 samples. The best free piano soundfont.",
+      "license": "CC-BY-3.0"
+    },
+    "MuseScore_General": {
+      "file": "/usr/share/sounds/sf3/MuseScore_General.sf3",
+      "description": "MuseScore bundled GM soundfont. Decent all-rounder, already installed.",
+      "license": "MIT"
+    }
+  },
+  "voices": {
+    "piano": {
+      "bright_concert": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 0,
+        "description": "Bright, clear concert grand. Crisp attack, good for classical and jazz."
+      },
+      "warm_grand": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 0,
+        "description": "Warm, rich grand piano. Fuller low end, softer attack. Romantic, intimate."
+      },
+      "honky_tonk": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 3,
+        "description": "Detuned, bright honky-tonk piano. Ragtime, saloon, playful."
+      },
+      "salamander": {
+        "soundfont": "SalamanderGrandPiano",
+        "bank": 0,
+        "preset": 0,
+        "description": "Salamander Yamaha C5 grand. Beautiful, natural, detailed. The best free piano sound."
+      },
+      "electric_classic": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 4,
+        "description": "Rhodes-style electric piano. Mellow, bell-like. Jazz, soul, lo-fi."
+      },
+      "electric_warm": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 4,
+        "description": "Warm Wurlitzer-style electric piano. Vintage, slightly overdriven."
+      }
+    },
+    "clarinet": {
+      "classical": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 71,
+        "description": "Clean, focused classical clarinet. Even tone, good for chamber music."
+      },
+      "warm_expressive": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 71,
+        "description": "Warmer, breathier clarinet. More body in the chalumeau register. Romantic."
+      }
+    },
+    "flute": {
+      "silver": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 73,
+        "description": "Bright silver flute. Clear, singing tone. Classical, pastoral."
+      },
+      "breathy": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 73,
+        "description": "Softer, breathier flute. More air in the tone. Impressionistic, gentle."
+      }
+    },
+    "oboe": {
+      "classical": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 68,
+        "description": "Focused, reedy oboe. Clear projection. Baroque, classical."
+      },
+      "pastoral": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 68,
+        "description": "Warmer oboe with more vibrato. Pastoral, lyrical."
+      }
+    },
+    "violin": {
+      "bright": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 40,
+        "description": "Bright solo violin. Clear, penetrating. Classical solos."
+      },
+      "rich": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 40,
+        "description": "Richer violin with more body. Romantic, expressive."
+      }
+    },
+    "viola": {
+      "warm": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 41,
+        "description": "Warm, dark viola tone."
+      }
+    },
+    "cello": {
+      "lyrical": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 42,
+        "description": "Singing cello. Rich low register, clear upper register."
+      },
+      "deep": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 42,
+        "description": "Deeper, darker cello. More resonance in the C string. Dramatic."
+      }
+    },
+    "strings_ensemble": {
+      "lush": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 48,
+        "description": "Lush, wide string ensemble. Romantic orchestral, cinematic."
+      },
+      "chamber": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 48,
+        "description": "Tighter, smaller string section. Chamber orchestra, baroque."
+      }
+    },
+    "trumpet": {
+      "bright": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 56,
+        "description": "Bright, assertive trumpet. Fanfares, classical, jazz lead."
+      },
+      "muted": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 59,
+        "description": "Muted trumpet. Soft, intimate. Jazz ballads, film noir."
+      }
+    },
+    "french_horn": {
+      "noble": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 60,
+        "description": "Noble, round French horn. Heroic, pastoral, orchestral."
+      },
+      "warm": {
+        "soundfont": "Timbres_of_Heaven",
+        "bank": 0,
+        "preset": 60,
+        "description": "Warmer, mellower horn. Romantic, blending."
+      }
+    },
+    "trombone": {
+      "bold": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 57,
+        "description": "Bold, brassy trombone. Orchestral, jazz big band."
+      }
+    },
+    "acoustic_guitar": {
+      "nylon": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 24,
+        "description": "Nylon-string classical guitar. Warm, rounded. Spanish, classical."
+      },
+      "steel": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 25,
+        "description": "Steel-string acoustic guitar. Bright, jangling. Folk, country, pop."
+      }
+    },
+    "harpsichord": {
+      "baroque": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 6,
+        "description": "Crisp harpsichord. Bright pluck, short decay. Baroque, early music."
+      }
+    },
+    "organ": {
+      "church": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 19,
+        "description": "Full church organ. Majestic, sustained. Sacred music, Bach."
+      },
+      "jazz": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 16,
+        "description": "Hammond-style drawbar organ. Warm, gritty. Jazz, blues, gospel."
+      }
+    },
+    "timpani": {
+      "orchestral": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 47,
+        "description": "Deep orchestral timpani. Thunderous rolls, dramatic accents."
+      }
+    },
+    "harp": {
+      "concert": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 46,
+        "description": "Concert harp. Shimmering, ethereal. Glissandi, arpeggios."
+      }
+    },
+    "celesta": {
+      "sparkle": {
+        "soundfont": "FluidR3_GM",
+        "bank": 0,
+        "preset": 8,
+        "description": "Celesta. Crystalline, magical. Nutcracker, fairy-tale moments."
+      }
+    }
+  },
+  "gm_instrument_map": {
+    "Piano": 0,
+    "Acoustic Grand Piano": 0,
+    "Bright Acoustic Piano": 1,
+    "Electric Grand Piano": 2,
+    "Honky-tonk Piano": 3,
+    "Electric Piano 1": 4,
+    "Electric Piano 2": 5,
+    "Harpsichord": 6,
+    "Clavinet": 7,
+    "Celesta": 8,
+    "Glockenspiel": 9,
+    "Music Box": 10,
+    "Vibraphone": 11,
+    "Marimba": 12,
+    "Xylophone": 13,
+    "Tubular Bells": 14,
+    "Dulcimer": 15,
+    "Drawbar Organ": 16,
+    "Percussive Organ": 17,
+    "Rock Organ": 18,
+    "Church Organ": 19,
+    "Reed Organ": 20,
+    "Accordion": 21,
+    "Harmonica": 22,
+    "Tango Accordion": 23,
+    "Acoustic Guitar (nylon)": 24,
+    "Acoustic Guitar (steel)": 25,
+    "Electric Guitar (jazz)": 26,
+    "Electric Guitar (clean)": 27,
+    "Violin": 40,
+    "Viola": 41,
+    "Cello": 42,
+    "Contrabass": 43,
+    "Harp": 46,
+    "Timpani": 47,
+    "String Ensemble 1": 48,
+    "String Ensemble 2": 49,
+    "Trumpet": 56,
+    "Trombone": 57,
+    "Tuba": 58,
+    "Muted Trumpet": 59,
+    "French Horn": 60,
+    "Brass Section": 61,
+    "Soprano Sax": 64,
+    "Alto Sax": 65,
+    "Tenor Sax": 66,
+    "Baritone Sax": 67,
+    "Oboe": 68,
+    "English Horn": 69,
+    "Bassoon": 70,
+    "Clarinet": 71,
+    "Piccolo": 72,
+    "Flute": 73,
+    "Recorder": 74
+  }
+}

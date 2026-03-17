@@ -28,5 +28,10 @@ htmlcov/
 *.mxl
 *.musicxml
 !tests/fixtures/*.musicxml
+!examples/*.musicxml
+!examples/*.mp3
 models/
 PDMXDataset/
+soundfonts/*.sf2
+soundfonts/*.sf3
+soundfonts/*.tar.xz

@@ -16,6 +16,16 @@
 
 ---
 
+## CP4: Canonical compositional wisdom in compose prompt (teacher, not grader)
+
+**What:** The `/compose` skill prompt includes 9 compositional principles extracted from statistical analysis of 198 richly annotated canonical masterworks (Bach, Beethoven, Mozart, Schubert, Chopin). These teach the LLM HOW to write expressively before it writes any music.
+
+**Why:** Experiment 007 showed that using canonical data as post-hoc feature targets (grading) fails — the LLM hits the numbers but produces incoherent music. The canonical data is more valuable as pre-composition guidance (teaching). Key principles: dynamics mark phrase boundaries (53%), staccatos cluster in passages (88%), accents fall on weak beats (67%), dynamic arcs are usually flat not building (55%), loudest moment in first quarter (median 26%).
+
+**Source:** `scripts/analyze_canonical_patterns.py` analyzed 198 pieces with dynamics>=10 and hairpins>=5 from the 2,871 canonical corpus. The scratchpad template also now includes an "Expression Plan" section requiring the composer to plan how to apply these principles.
+
+---
+
 ## CP3: Max 5 revision iterations
 
 **What:** The feedback loop caps at 5 iterations before accepting the current version.
