@@ -79,6 +79,13 @@ def extract_harmonic_features(score: Score) -> dict:
         logger.debug("modulation count extraction failed", exc_info=True)
         features["modulation_count"] = None
 
+    # --- scale_consistency (MusPy-compatible) ---
+    try:
+        features["scale_consistency"] = _scale_consistency(score)
+    except Exception:
+        logger.debug("scale_consistency extraction failed", exc_info=True)
+        features["scale_consistency"] = None
+
     return features
 
 
@@ -199,6 +206,44 @@ def _key_stability(score, detected_key) -> float | None:
 
     in_key = sum(1 for n in notes if n.pitch.pitchClass in scale_pitches)
     return in_key / len(notes)
+
+
+def _scale_consistency(score) -> float | None:
+    """Max fraction of notes fitting any major or minor scale.
+
+    Matches MusPy's scale_consistency metric: tries all 24 scales
+    (12 roots x major/minor) and returns the best fit.
+
+    Returns 0.0-1.0. Higher = more notes fit a single scale.
+    """
+    MAJOR_MASK = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1]  # from C
+    MINOR_MASK = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0]  # natural minor from C
+
+    notes = list(score.recurse().getElementsByClass("Note"))
+    if not notes:
+        return None
+
+    # Build pitch class histogram
+    pc_counts = [0] * 12
+    for n in notes:
+        pc_counts[n.pitch.pitchClass] += 1
+    total = sum(pc_counts)
+    if total == 0:
+        return None
+
+    best = 0.0
+    for root in range(12):
+        for mask in (MAJOR_MASK, MINOR_MASK):
+            in_scale = sum(
+                pc_counts[(root + i) % 12]
+                for i in range(12)
+                if mask[i]
+            )
+            ratio = in_scale / total
+            if ratio > best:
+                best = ratio
+
+    return best
 
 
 def _modulation_count(score) -> int:

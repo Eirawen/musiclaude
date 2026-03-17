@@ -84,6 +84,13 @@ def extract_coherence_features(score: Score) -> dict:
         logger.debug("rhythmic_independence extraction failed", exc_info=True)
         features["rhythmic_independence"] = None
 
+    # --- groove_consistency (MusPy-compatible) ---
+    try:
+        features["groove_consistency"] = _groove_consistency(score)
+    except Exception:
+        logger.debug("groove_consistency extraction failed", exc_info=True)
+        features["groove_consistency"] = None
+
     return features
 
 
@@ -356,6 +363,70 @@ def _strong_beat_consonance(score) -> float | None:
             consonant_count += 1
 
     return consonant_count / total_count if total_count > 0 else None
+
+
+def _groove_consistency(score) -> float | None:
+    """Consistency of rhythmic onset patterns across consecutive measures.
+
+    Matches MusPy's groove_consistency metric: builds a binary onset vector
+    per measure (quantized to 16th notes), then computes 1 minus the average
+    Hamming distance between consecutive measures.
+
+    Returns 0.0-1.0. Higher = more consistent groove.
+    """
+    SUBDIVISIONS_PER_BEAT = 4  # 16th note resolution
+
+    parts = list(score.parts)
+    if not parts:
+        return None
+
+    # Use first (melody) part
+    part = parts[0]
+    measures = list(part.getElementsByClass("Measure"))
+    if len(measures) < 2:
+        return None
+
+    # Build onset vectors per measure
+    groove_patterns: list[list[bool]] = []
+    for measure in measures:
+        ts = measure.getContextByClass("TimeSignature")
+        if ts is None:
+            beats_per_measure = 4
+        else:
+            beats_per_measure = ts.numerator * (4 / ts.denominator)
+
+        slots = int(beats_per_measure * SUBDIVISIONS_PER_BEAT)
+        if slots <= 0:
+            continue
+
+        pattern = [False] * slots
+        for n in measure.recurse().getElementsByClass("Note"):
+            pos = int(round(float(n.offset) * SUBDIVISIONS_PER_BEAT))
+            if 0 <= pos < slots:
+                pattern[pos] = True
+
+        groove_patterns.append(pattern)
+
+    if len(groove_patterns) < 2:
+        return None
+
+    # Compute average normalized Hamming distance between consecutive measures
+    total_dist = 0.0
+    n_pairs = 0
+    for i in range(len(groove_patterns) - 1):
+        a, b = groove_patterns[i], groove_patterns[i + 1]
+        # Handle measures of different lengths (time sig changes)
+        min_len = min(len(a), len(b))
+        if min_len == 0:
+            continue
+        mismatches = sum(a[j] != b[j] for j in range(min_len))
+        total_dist += mismatches / min_len
+        n_pairs += 1
+
+    if n_pairs == 0:
+        return None
+
+    return 1.0 - (total_dist / n_pairs)
 
 
 def _rhythmic_independence(score) -> float | None:

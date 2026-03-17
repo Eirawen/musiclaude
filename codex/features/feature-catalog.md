@@ -1,6 +1,6 @@
 # Feature Catalog
 
-32 features extracted from MusicXML via music21. One row per score.
+44 features extracted from MusicXML via music21. One row per score.
 
 ## Harmonic Features (`harmonic.py`)
 
@@ -14,6 +14,7 @@
 | `cadence_count_deceptive` | int | 0+ | V→vi progressions. Surprise resolution. |
 | `cadence_count_plagal` | int | 0+ | IV→I progressions. "Amen" cadence. |
 | `key_stability` | float | 0-1 | Fraction of notes in the detected key's scale. Low = atonal or poorly established key. |
+| `scale_consistency` | float | 0-1 | Max fraction of notes fitting any of 24 scales (12 roots x major/minor). MusPy-compatible. Unlike key_stability, tries all scales. |
 | `modulation_count` | int | 0+ | Key changes detected via windowed Krumhansl-Schmuckler analysis (4-measure windows). |
 
 ## Melodic Features (`melodic.py`)
@@ -36,6 +37,11 @@
 | `num_parts` | int | 1+ | Number of parts/instruments. |
 | `total_duration_beats` | float | 0+ | Total score duration in quarter-note beats. |
 | `dynamics_count` | int | 0+ | Number of dynamic markings (pp, p, mp, mf, f, ff, etc.). |
+| `hairpin_count` | int | 0+ | Crescendo/decrescendo wedges (DynamicWedge). |
+| `articulation_count` | int | 0+ | Total note-attached articulations. |
+| `staccato_count` | int | 0+ | Staccato + staccatissimo markings. |
+| `accent_count` | int | 0+ | Accent + strong accent markings. |
+| `expression_count` | int | 0+ | Expressions excluding RehearsalMark (fermatas, trills, ornaments). |
 | `tempo_count` | int | 0+ | Number of MetronomeMark objects. |
 | `time_sig_complexity` | float | 0/0.5/1 | 0=simple, 0.5=mixed, 1=compound meter. |
 | `num_sections` | int | 0+ | RehearsalMark + RepeatBracket + RepeatMark count. |
@@ -62,3 +68,4 @@
 | `phrase_length_regularity` | float | 0+ | Coefficient of variation of phrase lengths. Low = regular. | No detectable phrase boundaries |
 | `strong_beat_consonance` | float | 0-1 | Fraction of strong beats with consonant intervals. | Accidental dissonance on downbeats |
 | `rhythmic_independence` | float | 0-1 | How independently parts move rhythmically. | Parts in lockstep (bad orchestration) |
+| `groove_consistency` | float | 0-1 | Consistency of onset patterns across consecutive measures. MusPy-compatible. | Irregular/random rhythm patterns |

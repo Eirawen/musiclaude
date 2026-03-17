@@ -57,6 +57,7 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 | [experiments/001-baseline-training.md](experiments/001-baseline-training.md) | First training run: XGBoost + Isolation Forest on 25.6K PDMX files. Key finding: dynamics_count is #1 predictor, 60.2% accuracy is statistically significant (p < 0.0001) |
 | [experiments/002-dedup-pdmx-features.md](experiments/002-dedup-pdmx-features.md) | Deduplication + PDMX metadata features (complexity, scale_consistency, groove_consistency). Accuracy 60.2% → 63.5%. Data quality > data quantity. |
 | [experiments/003-performance-directives.md](experiments/003-performance-directives.md) | Disaggregated performance directives into 5 features. Binary accuracy dipped slightly but regressor R² jumped 41%. All new features in top half of importance. |
+| [experiments/004-self-computed-features.md](experiments/004-self-computed-features.md) | Replaced PDMX metadata with self-computed scale_consistency + groove_consistency, dropped complexity. Models now work on new compositions. |
 
 ## Report
 

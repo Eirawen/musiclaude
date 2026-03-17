@@ -60,15 +60,18 @@ class QualityPredictor:
         result = {}
 
         # Signal 1: XGBoost binary classification
-        clf_df = pd.DataFrame([features])[self.clf_features]
-        clf_df = clf_df.apply(pd.to_numeric, errors='coerce').fillna(0)
+        clf_df = pd.DataFrame([features]).reindex(columns=self.clf_features)
+        clf_df = clf_df.apply(pd.to_numeric, errors='coerce')
+        missing = [c for c in self.clf_features if c not in features]
+        if missing:
+            logger.warning(f"Missing {len(missing)} classifier features (will use NaN): {missing}")
         result["is_good"] = bool(self.classifier.predict(clf_df)[0])
         result["good_probability"] = float(self.classifier.predict_proba(clf_df)[0][1])
 
         # Signal 1b: XGBoost regression
         if self.regressor:
-            reg_df = pd.DataFrame([features])[self.reg_features]
-            reg_df = reg_df.apply(pd.to_numeric, errors='coerce').fillna(0)
+            reg_df = pd.DataFrame([features]).reindex(columns=self.reg_features)
+            reg_df = reg_df.apply(pd.to_numeric, errors='coerce')
             result["predicted_rating"] = float(np.clip(self.regressor.predict(reg_df)[0], 0, 5))
 
         # Signal 2: Distribution-based anomaly scoring

@@ -70,8 +70,7 @@ def load_and_prepare(csv_path: str, min_ratings: int = 3, pdmx_csv: str | None =
         join_cols = ["path"]
         if "rating" not in df.columns:
             join_cols += ["rating", "n_ratings"]
-        extra_cols = ["subset:rated_deduplicated", "scale_consistency", "groove_consistency",
-                      "complexity", "is_user_pro"]
+        extra_cols = ["subset:rated_deduplicated", "is_user_pro"]
         try:
             metadata = pd.read_csv(pdmx_csv, usecols=join_cols + extra_cols)
         except ValueError:

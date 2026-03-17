@@ -81,14 +81,27 @@ def validate_composition(
             result["anomaly"] = anomaly_report
             critiques.extend(anomaly_report.critiques)
 
-        # Pass requires BOTH signals to be positive
-        xgb_passes = quality.get("good_probability", 0) >= quality_threshold
+        # Pass requires: regressor rating above threshold AND not anomalous
+        # Use regressor (continuous prediction) as primary signal — more reliable
+        # than binary classifier for the feedback loop
+        predicted_rating = quality.get("predicted_rating")
+        if predicted_rating is not None:
+            # quality_threshold maps to predicted rating: 0.5 → 4.5/5
+            rating_threshold = 4.0 + quality_threshold
+            rating_passes = predicted_rating >= rating_threshold
+        else:
+            # Fall back to binary classifier probability
+            rating_passes = quality.get("good_probability", 0) >= quality_threshold
         anomaly_ok = not quality.get("is_anomalous", False)
-        result["passes"] = xgb_passes and anomaly_ok
+        result["passes"] = rating_passes and anomaly_ok
 
-        if not xgb_passes:
-            prob = quality.get("good_probability", 0)
-            critiques.insert(0, f"XGBoost quality score ({prob:.0%}) below threshold ({quality_threshold:.0%}).")
+        if not rating_passes:
+            if predicted_rating is not None:
+                rating_threshold = 4.0 + quality_threshold
+                critiques.insert(0, f"Predicted rating ({predicted_rating:.2f}/5.0) below threshold ({rating_threshold:.1f}/5.0).")
+            else:
+                prob = quality.get("good_probability", 0)
+                critiques.insert(0, f"XGBoost quality score ({prob:.0%}) below threshold ({quality_threshold:.0%}).")
         if not anomaly_ok:
             score = quality.get("anomaly_score", 0)
             critiques.insert(0, f"Distribution scorer flagged this as anomalous (score: {score:.2f}).")
