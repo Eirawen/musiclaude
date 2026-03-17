@@ -18,6 +18,8 @@ def validate_composition(
     classifier_path: str | None = None,
     regressor_path: str | None = None,
     distribution_scorer_path: str | None = None,
+    profile_path: str | None = None,
+    previous_features: dict | None = None,
     quality_threshold: float = 0.5,
 ) -> dict:
     """Full validation pipeline for a generated composition.
@@ -117,6 +119,16 @@ def validate_composition(
     else:
         # No models available — pass if structurally valid
         result["passes"] = structural.is_valid
+
+    # Step 4: Feature profile comparison (the primary feedback signal)
+    if profile_path is None:
+        profile_path = os.path.join(os.path.dirname(classifier_path or "models/"), "feature_profile.joblib")
+    if os.path.exists(profile_path):
+        from musiclaude.classifier.profile import FeatureProfile
+        profile = FeatureProfile.load(profile_path)
+        comparison = profile.compare(features, previous_features=previous_features)
+        result["profile_comparison"] = comparison
+        result["profile_feedback"] = profile.format_feedback(comparison)
 
     # Add structural warnings as mild critiques
     for w in structural.warnings:

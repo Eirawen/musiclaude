@@ -13,71 +13,47 @@ logger = logging.getLogger(__name__)
 def format_critique_for_llm(validation_result: dict) -> str:
     """Format validation results into a prompt-friendly critique for the LLM.
 
-    Returns a markdown-formatted string describing what needs improvement.
-    Combines XGBoost quality predictions, distribution anomaly scoring,
-    and structural validation into a single actionable report.
+    Primary signal: feature profile comparison (percentile-based, ranked by importance).
+    Secondary signals: XGBoost predictions, distribution anomaly scoring.
     """
     lines = []
 
-    # --- XGBoost quality signal ---
+    # --- PRIMARY: Feature profile feedback (ranked improvement instructions) ---
+    profile_feedback = validation_result.get("profile_feedback")
+    if profile_feedback:
+        lines.append(profile_feedback)
+
+    # --- SECONDARY: XGBoost quality signal (for reference) ---
     quality = validation_result.get("quality")
     if quality:
         rating = quality.get("predicted_rating")
         prob = quality.get("good_probability", 0)
         if rating:
-            lines.append(f"**Predicted rating: {rating:.1f}/5.0** (probability of 'good': {prob:.0%})")
-        else:
-            lines.append(f"**Probability of 'good' quality: {prob:.0%}**")
+            lines.append(f"\n**XGBoost reference:** predicted rating {rating:.1f}/5.0, P(good) = {prob:.0%}")
 
-    # --- Distribution anomaly signal ---
+    # --- SECONDARY: Distribution anomaly signal ---
     anomaly = validation_result.get("anomaly")
     if anomaly:
         status = "ANOMALOUS" if anomaly.is_anomalous else "normal"
-        lines.append(f"**Distribution check: {status}** (anomaly score: {anomaly.score:.2f})")
+        lines.append(f"**Distribution check:** {status} (score: {anomaly.score:.2f})")
 
-    # --- Combined critiques ---
+    # --- Structural/distribution critiques ---
     critiques = validation_result.get("critiques", [])
     if critiques:
-        lines.append("\n**Issues to address:**")
+        lines.append("\n**Additional issues:**")
         for i, c in enumerate(critiques, 1):
             lines.append(f"{i}. {c}")
 
-    # --- Key metrics ---
-    features = validation_result.get("features", {})
-    if features:
-        lines.append("\n**Key metrics:**")
-        highlight_keys = [
-            # Harmonic
-            "chord_vocabulary_size", "pct_extended_chords", "key_stability",
-            # Melodic
-            "avg_interval_size", "pct_stepwise", "melodic_range",
-            # Structural
-            "rhythmic_variety", "dynamics_count", "num_parts",
-            # Coherence (new — these are the LLM-specific signals)
-            "note_density", "rest_ratio", "pitch_class_entropy",
-            "interval_entropy", "melodic_autocorrelation",
-        ]
-        for k in highlight_keys:
-            v = features.get(k)
-            if v is not None:
-                if isinstance(v, float):
-                    lines.append(f"- {k}: {v:.3f}")
-                else:
-                    lines.append(f"- {k}: {v}")
-
-    # --- Feature deviation highlights (from distribution scorer) ---
-    if anomaly and anomaly.feature_deviations:
-        extreme = sorted(
-            anomaly.feature_deviations.items(),
-            key=lambda x: abs(x[1]),
-            reverse=True,
-        )[:5]
-        if any(abs(z) > 1.5 for _, z in extreme):
-            lines.append("\n**Most unusual features (z-score from normal):**")
-            for feat, z in extreme:
-                if abs(z) > 1.5:
-                    direction = "above" if z > 0 else "below"
-                    lines.append(f"- {feat}: {z:+.1f} ({direction} normal)")
+    # If no profile, fall back to key metrics dump
+    if not profile_feedback:
+        features = validation_result.get("features", {})
+        if features:
+            lines.append("\n**Key metrics:**")
+            for k in ["chord_vocabulary_size", "dynamics_count", "melodic_range",
+                       "rhythmic_variety", "rest_ratio", "pitch_class_entropy"]:
+                v = features.get(k)
+                if v is not None:
+                    lines.append(f"- {k}: {v:.3f}" if isinstance(v, float) else f"- {k}: {v}")
 
     return "\n".join(lines)
 
@@ -116,6 +92,15 @@ def log_revision(
             if k not in ("anomaly_report",)
         }
 
+    # Save features (excluding non-serializable values) for delta comparison
+    features_data = None
+    raw_features = validation_result.get("features")
+    if raw_features:
+        features_data = {
+            k: v for k, v in raw_features.items()
+            if isinstance(v, (int, float, type(None))) and k != "filepath"
+        }
+
     log_entry = {
         "iteration": iteration,
         "timestamp": datetime.now().isoformat(),
@@ -123,6 +108,7 @@ def log_revision(
         "passes": validation_result["passes"],
         "quality": quality_data,
         "anomaly": anomaly_data,
+        "features": features_data,
         "num_critiques": len(validation_result.get("critiques", [])),
         "critiques": validation_result.get("critiques", []),
     }
@@ -140,6 +126,7 @@ def run_feedback_loop(
     classifier_path: str | None = None,
     regressor_path: str | None = None,
     distribution_scorer_path: str | None = None,
+    profile_path: str | None = None,
     quality_threshold: float = 0.5,
     max_iterations: int = 5,
 ) -> dict:
@@ -155,12 +142,17 @@ def run_feedback_loop(
         - validation: full validation result
         - iteration: current iteration number
     """
-    # Determine iteration number from existing log
+    # Determine iteration number and previous features from existing log
     log_path = os.path.join(output_dir, "revision_log.jsonl")
     iteration = 0
+    previous_features = None
     if os.path.exists(log_path):
         with open(log_path) as f:
-            iteration = sum(1 for _ in f)
+            entries = [json.loads(line) for line in f if line.strip()]
+            iteration = len(entries)
+            # Get features from the last iteration for delta comparison
+            if entries:
+                previous_features = entries[-1].get("features")
 
     if iteration >= max_iterations:
         return {
@@ -175,6 +167,8 @@ def run_feedback_loop(
         classifier_path=classifier_path,
         regressor_path=regressor_path,
         distribution_scorer_path=distribution_scorer_path,
+        profile_path=profile_path,
+        previous_features=previous_features,
         quality_threshold=quality_threshold,
     )
 
