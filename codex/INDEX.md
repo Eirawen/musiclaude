@@ -1,6 +1,6 @@
 # MusicLaude Codex
 
-LLM-composed music as structured text (MusicXML), quality-assessed by a trained classifier, iteratively improved via feedback loop. Core thesis: XGBoost on 32 musical features predicts human ratings, and distribution anomaly detection catches LLM-specific failure modes.
+LLM-composed music as structured text (MusicXML), quality-assessed by feature profile comparison against high-rated distributions, iteratively improved via ranked feedback. Core thesis: feature importance from XGBoost training is stable and actionable — telling an LLM "your dynamics_count is at the 3rd percentile, target is 8" produces better music than predicting a rating.
 
 ## Top-Level
 
@@ -11,27 +11,27 @@ LLM-composed music as structured text (MusicXML), quality-assessed by a trained 
 
 ## Features (Feature Extraction Pipeline)
 
-32 features across 5 modules, extracted via music21 from MusicXML files.
+42+ features across 5 modules, extracted via music21 from MusicXML files.
 
 | File | Purpose |
 |------|---------|
-| [features/feature-catalog.md](features/feature-catalog.md) | Complete catalog of all 32 features: name, module, range, what it measures, why it matters |
+| [features/feature-catalog.md](features/feature-catalog.md) | Complete catalog of all features: name, module, range, what it measures, why it matters |
 | [features/decisions.md](features/decisions.md) | Feature engineering decisions and rationale |
 | [features/gotchas.md](features/gotchas.md) | music21 parsing pitfalls, edge cases in MusicXML |
 
 ## Classifier (Quality Assessment Models)
 
-XGBoost binary/regression + Isolation Forest anomaly detection.
+Feature profile (primary) + XGBoost (secondary) + Isolation Forest anomaly detection.
 
 | File | Purpose |
 |------|---------|
-| [classifier/architecture.md](classifier/architecture.md) | Two-signal design: XGBoost (rating prediction) + distribution scorer (anomaly detection) |
+| [classifier/architecture.md](classifier/architecture.md) | Three-signal design: feature profile (primary feedback), XGBoost (secondary reference), distribution scorer (anomaly detection) |
 | [classifier/decisions.md](classifier/decisions.md) | Model choices, hyperparameters, threshold decisions |
 | [classifier/gotchas.md](classifier/gotchas.md) | Training pitfalls, PDMX data quality issues |
 
 ## Compose (LLM Composition Pipeline)
 
-Claude Code skills: `/song-contract` → `/compose` → `/assess-quality`.
+Claude Code skills: `/song-contract` → `/compose` (with profile feedback loop) → `/assess-quality` (optional).
 
 | File | Purpose |
 |------|---------|
@@ -58,6 +58,7 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 | [experiments/002-dedup-pdmx-features.md](experiments/002-dedup-pdmx-features.md) | Deduplication + PDMX metadata features (complexity, scale_consistency, groove_consistency). Accuracy 60.2% → 63.5%. Data quality > data quantity. |
 | [experiments/003-performance-directives.md](experiments/003-performance-directives.md) | Disaggregated performance directives into 5 features. Binary accuracy dipped slightly but regressor R² jumped 41%. All new features in top half of importance. |
 | [experiments/004-self-computed-features.md](experiments/004-self-computed-features.md) | Replaced PDMX metadata with self-computed scale_consistency + groove_consistency, dropped complexity. Models now work on new compositions. |
+| [experiments/005-blind-abc-listening.md](experiments/005-blind-abc-listening.md) | **Blind A/B/C listening test.** 3 songs × 3 conditions. Profile feedback wins 2/3, +7.0 avg over baseline vs +1.3 for XGBoost. Profile set as default. |
 
 ## Report
 
