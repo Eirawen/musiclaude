@@ -1,0 +1,5 @@
+Predicted rating: 4.6/5.0
+P(good): 35%
+Anomaly: no (score: 0.40)
+dynamics_count = 4 is above normal range (0.00 - 47.00), z-score: +4.0
+Melodic range is very wide (43 semitones / 3 octaves). Consider narrowing for more practical performance.

@@ -108,36 +108,61 @@ Generate a complete, valid MusicXML file. Follow these rules strictly:
 | Dotted quarter | 6 |
 | Dotted eighth | 3 |
 
-### Phase 3: Validation
+### Phase 3: Validation & Parse Check
 
 After writing the MusicXML file to `output/score.musicxml`:
 
 1. Run `python -c "from music21 import converter; s = converter.parse('output/score.musicxml'); print(f'Parsed OK: {len(s.parts)} parts, {len(list(s.recurse().getElementsByClass(\"Note\")))} notes')"` to verify it parses
 2. If parsing fails, fix the XML and retry
-3. If the musiclaude package is installed, run quality assessment:
-   ```
-   python -c "
-   from musiclaude.compose.validate import validate_composition
-   result = validate_composition('output/score.musicxml')
-   print(result['structural_validation'].summary())
-   for c in result['critiques']:
-       print(f'  - {c}')
-   "
-   ```
 
-### Phase 4: Self-Assessment
+### Phase 4: Profile Feedback Loop (up to 3 iterations)
 
-Update `output/scratchpad.md` with:
-- What went well
-- Known limitations
-- Suggestions for `/assess-quality` feedback loop
+Run the feature profile assessment to get ranked improvement instructions:
+
+```python
+python -c "
+import os, json
+from musiclaude.compose.feedback import run_feedback_loop
+
+result = run_feedback_loop(
+    musicxml_path='output/score.musicxml',
+    output_dir='output',
+    classifier_path='models/quality_classifier.joblib' if os.path.exists('models/quality_classifier.joblib') else None,
+    regressor_path='models/quality_regressor.joblib' if os.path.exists('models/quality_regressor.joblib') else None,
+    distribution_scorer_path='models/distribution_scorer.joblib' if os.path.exists('models/distribution_scorer.joblib') else None,
+    profile_path='models/feature_profile.joblib' if os.path.exists('models/feature_profile.joblib') else None,
+    quality_threshold=0.5,
+    max_iterations=3,
+)
+print('PASSES:', result['passes'])
+print('ITERATION:', result['iteration'])
+print()
+print(result['critique_text'])
+"
+```
+
+Read the profile feedback — it gives you ranked, specific instructions like:
+> **dynamics_count** = 0 (percentile 3 in high-rated music, target median: 8). Add dynamic markings throughout the score.
+
+**If there are priority improvements to make:** Revise the MusicXML to address the top 3-5 issues. Focus on adding expressive markings (dynamics, hairpins, articulations), harmonic variety, and chromatic color — these are typically the highest-impact improvements. Then re-run the assessment to see the delta.
+
+**If most features are at or above median:** The composition is ready. Stop iterating.
+
+Update `output/scratchpad.md` after each iteration with what changed and what the delta report shows.
+
+### Phase 5: Render Audio
+
+When the feedback loop is done, render the final score:
+
+```bash
+musescore3 -o output/score.mp3 output/score.musicxml
+```
 
 ## Output Files
 
 - `output/score.musicxml` — The generated score
+- `output/score.mp3` — Rendered audio
 - `output/scratchpad.md` — Composition notes and iteration log
+- `output/revision_log.jsonl` — Feature deltas across iterations
 
-Tell the user the score is ready and suggest running `/assess-quality` to evaluate it, or using MuseScore to render audio:
-```
-musescore4 -o output/score.mp3 output/score.musicxml
-```
+Tell the user the score is ready and offer to play the MP3 or run `/assess-quality` for additional iterations.

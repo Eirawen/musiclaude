@@ -1,0 +1,6 @@
+Predicted rating: 4.8/5.0
+P(good): 49%
+Anomaly: no (score: 0.39)
+dynamics_count = 11 is above normal range (0.00 - 47.00), z-score: +11.0
+phrase_length_regularity = 0.2430679560328757 is below normal range (0.19 - 1.56), z-score: -13.8
+Melodic range is very wide (38 semitones / 3 octaves). Consider narrowing for more practical performance.

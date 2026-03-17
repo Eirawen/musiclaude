@@ -1,0 +1,38 @@
+{
+  "01.mp3": {
+    "song": "duet",
+    "condition": "baseline"
+  },
+  "02.mp3": {
+    "song": "prelude",
+    "condition": "baseline"
+  },
+  "03.mp3": {
+    "song": "prelude",
+    "condition": "xgboost"
+  },
+  "04.mp3": {
+    "song": "duet",
+    "condition": "xgboost"
+  },
+  "05.mp3": {
+    "song": "prelude",
+    "condition": "profile"
+  },
+  "06.mp3": {
+    "song": "waltz",
+    "condition": "profile"
+  },
+  "07.mp3": {
+    "song": "duet",
+    "condition": "profile"
+  },
+  "08.mp3": {
+    "song": "waltz",
+    "condition": "baseline"
+  },
+  "09.mp3": {
+    "song": "waltz",
+    "condition": "xgboost"
+  }
+}

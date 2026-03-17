@@ -1,0 +1,9 @@
+Predicted rating: 4.6/5.0
+P(good): 49%
+Anomaly: no (score: 0.41)
+harmonic_rhythm = 0.036458333333333336 is above normal range (-0.03 - 0.04), z-score: +2.1
+avg_interval_size = 4.882352941176471 is above normal range (1.55 - 4.90), z-score: +2.0
+dynamics_count = 7 is above normal range (0.00 - 47.00), z-score: +7.0
+tempo_count = 8 is above normal range (0.00 - 7.00), z-score: +7.0
+Too many melodic leaps (75%). More stepwise motion would improve singability.
+Melodic range is very wide (48 semitones / 4 octaves). Consider narrowing for more practical performance.

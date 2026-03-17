@@ -1,6 +1,6 @@
 ---
 name: assess-quality
-description: Run the quality classifier on a generated MusicXML score and provide feedback for revision. Use after /compose to evaluate and iteratively improve compositions.
+description: Run the feature profile quality assessment on a generated MusicXML score and provide ranked feedback for revision. Use after /compose to evaluate and iteratively improve compositions.
 user-invocable: true
 allowed-tools: Read, Write, Glob, Grep, Bash(python *)
 argument-hint: [score-path]
@@ -8,13 +8,18 @@ argument-hint: [score-path]
 
 # Quality Assessment & Feedback Loop
 
-You assess a generated MusicXML composition using the trained quality classifier and structural validator, then provide actionable feedback for improvement.
+You assess a generated MusicXML composition using the feature profile system (percentile-based comparison against high-rated music distributions, ranked by feature importance) and provide actionable feedback for improvement.
+
+**Primary signal:** Feature profile — compares each feature against high-rated PDMX distributions, ranks gaps by importance, gives specific improvement instructions.
+**Secondary signals:** XGBoost predictions, distribution anomaly scoring (for reference only).
 
 ## Input
 
 - Score path: argument or default `output/score.musicxml`
 - Scratchpad: `output/scratchpad.md` (if exists)
-- Trained models: `models/quality_classifier.joblib`, `models/quality_regressor.joblib`, and `models/distribution_scorer.joblib` (if available)
+- Feature profile: `models/feature_profile.joblib` (primary feedback)
+- XGBoost models: `models/quality_classifier.joblib`, `models/quality_regressor.joblib` (secondary reference)
+- Distribution scorer: `models/distribution_scorer.joblib` (anomaly detection)
 
 ## Process
 
@@ -32,6 +37,7 @@ result = run_feedback_loop(
     classifier_path='models/quality_classifier.joblib' if os.path.exists('models/quality_classifier.joblib') else None,
     regressor_path='models/quality_regressor.joblib' if os.path.exists('models/quality_regressor.joblib') else None,
     distribution_scorer_path='models/distribution_scorer.joblib' if os.path.exists('models/distribution_scorer.joblib') else None,
+    profile_path='models/feature_profile.joblib' if os.path.exists('models/feature_profile.joblib') else None,
     quality_threshold=0.5,
     max_iterations=5,
 )
@@ -43,19 +49,16 @@ print(result['critique_text'])
 "
 ```
 
-If the classifier models aren't available yet, fall back to structural validation and manual feature inspection:
+If models aren't available, fall back to structural validation and feature inspection:
 
 ```python
 python -c "
 from musiclaude.features.extract import extract_features_from_file
 from musiclaude.validator.structural import validate_file
-from musiclaude.classifier.predict import QualityPredictor
 
-# Structural validation
 result = validate_file('SCORE_PATH')
 print(result.summary())
 
-# Feature extraction
 features = extract_features_from_file('SCORE_PATH')
 if features:
     for k, v in sorted(features.items()):
@@ -66,20 +69,21 @@ if features:
 
 ### Step 2: Analyze Results
 
-Read the output and compare against the song contract's quality targets. Identify:
+The profile feedback is your primary guide. It gives you ranked improvement instructions like:
+> **dynamics_count** = 0 (percentile 3 in high-rated music, target median: 8). Add dynamic markings throughout the score.
 
-1. **Structural errors** — Must be fixed (invalid XML, wrong measure durations)
-2. **Quality deficiencies** — Below target thresholds from the contract
-3. **Distribution anomalies** — Features that deviate from what normal music looks like (no rests, low pitch variety, monotone rhythm, random-walk melody). These are LLM-specific failure modes.
-4. **Theory issues** — Parallel fifths/octaves, poor voice leading, range violations
-5. **Expression gaps** — Missing dynamics, tempo marks, articulations
+Focus on the top 3-5 priority improvements. Also check for:
+
+1. **Structural errors** — Must be fixed first (invalid XML, wrong measure durations)
+2. **Distribution anomalies** — Features that deviate from what normal music looks like
+3. **Expression gaps** — Missing dynamics, tempo marks, articulations (profile will flag these)
 
 ### Step 3: Generate Revision Instructions
 
-If the score doesn't pass, create specific, actionable revision instructions. Be precise:
+Create specific, actionable revision instructions based on the profile feedback. Be precise:
 
 - BAD: "Improve the harmony"
-- GOOD: "Measures 8-12 use only I and V chords. Add ii-V-I progressions and a secondary dominant (V/V) in measure 10 to increase harmonic variety from 2 to 5+ chord types."
+- GOOD: "dynamics_count is at the 3rd percentile. Add mp at measure 1, crescendo to mf at measure 9, f at the climax in measure 17, and diminuendo to p for the coda."
 
 ### Step 4: Update Scratchpad
 
@@ -88,23 +92,24 @@ Append to `output/scratchpad.md`:
 ```markdown
 ### Quality Assessment — Iteration [N]
 - **Passes**: [yes/no]
-- **Predicted rating**: [if available]
-- **Key issues**:
-  1. [issue + specific fix]
-  2. [issue + specific fix]
+- **Profile**: [N/M] features at or above high-rated median
+- **Top improvements needed**:
+  1. [feature + specific fix from profile]
+  2. [feature + specific fix from profile]
+- **Delta from previous** (if iteration > 0): [what improved/regressed]
 - **What's working well**: [positive aspects to preserve]
 ```
 
 ### Step 5: Decision
 
-If the score **passes**: Tell the user it meets quality standards. Suggest rendering:
+If the score **passes** or profile shows most features above median: Tell the user it meets quality standards. Suggest rendering:
 ```
-musescore4 -o output/score.mp3 output/score.musicxml
+musescore3 -o output/score.mp3 output/score.musicxml
 ```
 
-If the score **doesn't pass** and iterations remain: Present the critique and ask if the user wants to revise. If yes, the revision instructions should be specific enough to feed directly back into `/compose`.
+If the score **doesn't pass** and iterations remain: Present the profile critique and ask if the user wants to revise. The ranked improvement instructions feed directly back into `/compose`.
 
-If **max iterations reached**: Present the final assessment and let the user decide whether to accept or continue manually.
+If **max iterations reached**: Present the final assessment and let the user decide.
 
 ## Output
 

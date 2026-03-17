@@ -1,0 +1,12 @@
+**Priority improvements** (ranked by impact):
+
+1. **melodic_autocorrelation** = -0.160 (percentile 2 in high-rated music, target median: 0.417). Develop motifs — repeat and vary melodic ideas rather than writing entirely new material each phrase.
+2. **scale_consistency** = 1.00 (percentile 88 in high-rated music, target median: 0.914). Add chromatic passing tones, borrowed chords, or brief tonicizations. Don't stay strictly diatonic.
+3. **avg_range_utilization** = 0.155 (percentile 8 in high-rated music, target median: 0.328). Use more of each instrument's comfortable range instead of staying in a narrow register.
+4. **pitch_class_entropy** = 2.67 (percentile 17 in high-rated music, target median: 3.00). Use more of the chromatic scale. Avoid over-relying on a few pitches.
+5. **rest_ratio** = 0.010 (percentile 6 in high-rated music, target median: 0.145). Add rests between phrases. Let the music breathe. Don't fill every beat with notes.
+6. **chord_vocabulary_size** = 16 (percentile 13 in high-rated music, target median: 49.0). Use more varied chord qualities — add 7ths, suspended, diminished, augmented chords.
+7. **rhythmic_variety** = 4 (percentile 7 in high-rated music, target median: 7.00). Use more varied rhythms — mix eighth notes, quarters, dotted rhythms, triplets.
+8. **modulation_count** = 2 (percentile 7 in high-rated music, target median: 10.0). Add key changes between sections — even a brief tonicization adds harmonic interest.
+
+29/41 features at or above high-rated median.
