@@ -1,0 +1,18 @@
+{
+  "track_01": {
+    "profile": "models/feature_profile.joblib",
+    "label": "v1-pdmx"
+  },
+  "track_02": {
+    "profile": "models/feature_profile_v3.joblib",
+    "label": "v3-full"
+  },
+  "track_03": {
+    "profile": "models/feature_profile_v3_dcml.joblib",
+    "label": "v3-dcml"
+  },
+  "track_04": {
+    "profile": "models/feature_profile_v3_lieder.joblib",
+    "label": "v3-lieder"
+  }
+}

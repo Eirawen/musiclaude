@@ -155,5 +155,8 @@ before passing to `build_canonical_profile.py`.
 
 ## What's next
 
-Blind listening test: compose same piece with v1 (PDMX) vs v3 (canonical) feedback.
-See experiment 007 for protocol design.
+See experiment 007 for the blind listening test results.
+
+**Spoiler:** The canonical profiles lost. Badly. The old PDMX profile produced the
+only composition the listener actually liked. Higher feature targets ≠ better music
+when the composer (LLM) can't execute at that level. See 007 for the full analysis.

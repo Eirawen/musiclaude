@@ -62,6 +62,7 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 | [experiments/004-self-computed-features.md](experiments/004-self-computed-features.md) | Replaced PDMX metadata with self-computed scale_consistency + groove_consistency, dropped complexity. Models now work on new compositions. |
 | [experiments/005-blind-abc-listening.md](experiments/005-blind-abc-listening.md) | **Blind A/B/C listening test.** 3 songs × 3 conditions. Profile feedback wins 2/3, +7.0 avg over baseline vs +1.3 for XGBoost. Profile set as default. |
 | [experiments/006-canonical-corpus-pipeline.md](experiments/006-canonical-corpus-pipeline.md) | **Canonical MusicXML corpora.** MIDI inference → MusicXML insight. MuseScore version hack, 2,873 canonical pieces, v3 profile with 12x more hairpins than PDMX. |
+| [experiments/007-blind-profile-comparison.md](experiments/007-blind-profile-comparison.md) | **Blind profile comparison.** Canonical profiles (v3) vs PDMX (v1). HYPOTHESIS REJECTED — v1 won decisively. Higher targets ≠ better music when the LLM can't execute at that level. The competence ceiling problem. |
 
 ## Report
 
