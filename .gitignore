@@ -29,3 +29,4 @@ htmlcov/
 *.musicxml
 !tests/fixtures/*.musicxml
 models/
+PDMXDataset/

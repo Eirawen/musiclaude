@@ -63,3 +63,35 @@ Things that bit us or will bite future agents.
 **What:** When XGBoost trains on CUDA but predicts on a CPU DataFrame, it warns about "mismatched devices" and falls back to CPU for prediction.
 
 **Impact:** Harmless for inference (prediction is fast regardless). Only matters for training throughput.
+
+---
+
+## G9: PDMX ratings are extremely right-skewed
+
+**What:** 98.5% of rated pieces score above 4.0. The minimum rated score is 2.83, not 0. A naive 4.0 binary threshold gives a 98.5/1.5 class split — useless for training.
+
+**Fix:** Use the median of the filtered subset as threshold (4.76 for n_ratings >= 10). Always recalculate if changing the min_ratings filter.
+
+---
+
+## G10: features.csv may not have rating/n_ratings columns
+
+**What:** The extraction checkpoint writes features incrementally without ratings. The PDMX join only happens at the end. If training reads a checkpoint mid-extraction, the rating column is missing.
+
+**Fix:** `train.py` now auto-detects PDMX.csv and joins on basename if the rating column is missing. But be aware that partial checkpoints may have fewer rated rows than expected.
+
+---
+
+## G11: Rated and unrated pieces have very different structural profiles
+
+**What:** Rated pieces are systematically longer (median 73 bars vs ~20), have more notes (1058 vs ~200), and more tracks than unrated ones. This is selection bias — substantial compositions attract attention and ratings.
+
+**Impact:** The classifier is biased toward "bigger is better." Short LLM compositions (16-32 bars) are at the low end of the training distribution. This is partially correct (longer = more developed) but can unfairly penalize intentionally concise pieces.
+
+---
+
+## G12: dynamics_count is #1 but partly a confound
+
+**What:** Dynamics count is the strongest predictor of quality in both models (importance 0.053-0.060). But the presence of dynamics markings correlates with composer skill level, not just the dynamics themselves. A piece with "pp" slapped at the start will score higher in this feature but isn't actually better.
+
+**Impact:** The feedback loop correctly tells LLMs "add dynamics" which is good advice. But the classifier's quality prediction is inflated by this confound. Future work: normalize dynamics_count by piece length, or use dynamics_per_beat instead.

@@ -20,7 +20,10 @@ import matplotlib.pyplot as plt
 logger = logging.getLogger(__name__)
 
 # Columns to exclude from features
-NON_FEATURE_COLS = {"filepath", "rating", "n_ratings", "instrument_names", "basename"}
+NON_FEATURE_COLS = {
+    "filepath", "rating", "n_ratings", "instrument_names", "basename",
+    "subset:rated_deduplicated", "is_user_pro",  # metadata, not musical features
+}
 
 
 def _detect_device() -> str:
@@ -36,13 +39,57 @@ def _detect_device() -> str:
     return "cpu"
 
 
-def load_and_prepare(csv_path: str, min_ratings: int = 3) -> tuple[pd.DataFrame, pd.Series]:
+def load_and_prepare(csv_path: str, min_ratings: int = 3, pdmx_csv: str | None = None) -> tuple[pd.DataFrame, pd.Series]:
     """Load features CSV and prepare for training.
 
     Filters out unrated scores and those with too few ratings.
+    If the CSV lacks a 'rating' column, joins with PDMX.csv via filename hash.
+
     Returns feature matrix X and target series y (rating).
     """
     df = pd.read_csv(csv_path)
+
+    # Auto-detect PDMX.csv for joining ratings and metadata
+    if pdmx_csv is None:
+        import pathlib
+        candidates = [
+            pathlib.Path(csv_path).parent / "PDMXDataset" / "PDMX.csv",
+            pathlib.Path(csv_path).parent / "PDMX.csv",
+            pathlib.Path("PDMXDataset") / "PDMX.csv",
+            pathlib.Path("data") / "PDMX.csv",
+        ]
+        for candidate in candidates:
+            if candidate.exists():
+                pdmx_csv = str(candidate)
+                logger.info(f"Auto-detected PDMX.csv at {pdmx_csv}")
+                break
+
+    # Always join with PDMX.csv for metadata (dedup flag, extra features)
+    if pdmx_csv is not None:
+        logger.info(f"Joining features with PDMX metadata from {pdmx_csv}")
+        join_cols = ["path"]
+        if "rating" not in df.columns:
+            join_cols += ["rating", "n_ratings"]
+        extra_cols = ["subset:rated_deduplicated", "scale_consistency", "groove_consistency",
+                      "complexity", "is_user_pro"]
+        try:
+            metadata = pd.read_csv(pdmx_csv, usecols=join_cols + extra_cols)
+        except ValueError:
+            metadata = pd.read_csv(pdmx_csv, usecols=join_cols)
+
+        df["basename"] = df["filepath"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+        metadata["basename"] = metadata["path"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+        merge_cols = ["basename"]
+        for c in ["rating", "n_ratings"] + extra_cols:
+            if c in metadata.columns and c not in df.columns:
+                merge_cols.append(c)
+        df = df.merge(metadata[merge_cols], on="basename", how="left")
+        logger.info(f"Joined {df['rating'].notna().sum()} / {len(df)} rows with ratings")
+    elif "rating" not in df.columns:
+        raise ValueError(
+            "CSV has no 'rating' column and no PDMX.csv found. "
+            "Pass --pdmx-csv or run extract with --pdmx-csv to include ratings."
+        )
 
     # Filter: must have rating > 0 and enough ratings for reliability
     if "rating" not in df.columns:
@@ -51,6 +98,13 @@ def load_and_prepare(csv_path: str, min_ratings: int = 3) -> tuple[pd.DataFrame,
     df = df[df["rating"] > 0]
     if "n_ratings" in df.columns:
         df = df[df["n_ratings"] >= min_ratings]
+
+    # Deduplicate: use PDMX's subset:rated_deduplicated flag if available
+    dedup_col = "subset:rated_deduplicated"
+    if dedup_col in df.columns and df[dedup_col].notna().any():
+        n_before = len(df)
+        df = df[df[dedup_col].fillna(True) == True]
+        logger.info(f"Deduplication: {n_before} → {len(df)} (removed {n_before - len(df)} duplicates)")
 
     logger.info(f"Training on {len(df)} scored samples")
 
@@ -68,7 +122,7 @@ def load_and_prepare(csv_path: str, min_ratings: int = 3) -> tuple[pd.DataFrame,
     return X, y
 
 
-def train_binary_classifier(X: pd.DataFrame, y: pd.Series, threshold: float = 4.0, device: str | None = None):
+def train_binary_classifier(X: pd.DataFrame, y: pd.Series, threshold: float = 4.76, device: str | None = None):
     """Train binary classifier: good (rating >= threshold) vs not good."""
     if device is None:
         device = _detect_device()
@@ -162,8 +216,9 @@ def main():
     parser = argparse.ArgumentParser(description="Train music quality classifier")
     parser.add_argument("--features", required=True, help="Path to features CSV")
     parser.add_argument("--output", default="models", help="Output directory for models")
-    parser.add_argument("--threshold", type=float, default=4.0, help="Rating threshold for binary classification")
-    parser.add_argument("--min-ratings", type=int, default=3, help="Minimum number of ratings per score")
+    parser.add_argument("--threshold", type=float, default=4.76, help="Rating threshold for binary classification (4.76=PDMX median at n_ratings>=10)")
+    parser.add_argument("--min-ratings", type=int, default=10, help="Minimum number of ratings per score")
+    parser.add_argument("--pdmx-csv", default=None, help="Path to PDMX.csv for joining ratings (auto-detected if not set)")
     parser.add_argument("--cpu", action="store_true", help="Force CPU even if GPU is available")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
@@ -173,7 +228,7 @@ def main():
 
     device = "cpu" if args.cpu else _detect_device()
 
-    X, y = load_and_prepare(args.features, min_ratings=args.min_ratings)
+    X, y = load_and_prepare(args.features, min_ratings=args.min_ratings, pdmx_csv=args.pdmx_csv)
 
     # Binary classifier
     clf, clf_metrics = train_binary_classifier(X, y, threshold=args.threshold, device=device)

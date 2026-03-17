@@ -39,6 +39,37 @@ Claude Code skills: `/song-contract` → `/compose` → `/assess-quality`.
 | [compose/musicxml-reference.md](compose/musicxml-reference.md) | MusicXML generation patterns, duration math, common templates |
 | [compose/decisions.md](compose/decisions.md) | Skill design decisions |
 
+## Dataset (PDMX Analysis)
+
+Exploration and statistical analysis of the training data.
+
+| File | Purpose |
+|------|---------|
+| [dataset/pdmx-analysis.md](dataset/pdmx-analysis.md) | Full dataset analysis with plots: rating distribution, filtering rationale, genre bias, complexity profile, selection bias |
+| [dataset/pdmx-paper-notes.md](dataset/pdmx-paper-notes.md) | Notes from the PDMX paper (arXiv:2409.10831): validates our approach, 3-axis listening study design, dedup strategy, MusicRender format |
+
+## Experiments
+
+Experiment logs with setup, results, findings, and what we'd do differently.
+
+| File | Purpose |
+|------|---------|
+| [experiments/001-baseline-training.md](experiments/001-baseline-training.md) | First training run: XGBoost + Isolation Forest on 25.6K PDMX files. Key finding: dynamics_count is #1 predictor, 60.2% accuracy is statistically significant (p < 0.0001) |
+| [experiments/002-dedup-pdmx-features.md](experiments/002-dedup-pdmx-features.md) | Deduplication + PDMX metadata features (complexity, scale_consistency, groove_consistency). Accuracy 60.2% → 63.5%. Data quality > data quantity. |
+| [experiments/003-performance-directives.md](experiments/003-performance-directives.md) | Disaggregated performance directives into 5 features. Binary accuracy dipped slightly but regressor R² jumped 41%. All new features in top half of importance. |
+
+## Report
+
+| File | Purpose |
+|------|---------|
+| [../report/musiclaude.md](../report/musiclaude.md) | Full paper draft with sections 1-10, TODO placeholders for results |
+
+## Listening Study
+
+| File | Purpose |
+|------|---------|
+| [../analysis/listening_study.py](../analysis/listening_study.py) | Streamlit A/B listening study for classifier validation |
+
 ## Validator (Music Theory Checks)
 
 Structural and music-theory validation.

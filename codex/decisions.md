@@ -49,3 +49,33 @@
 **Decision:** Use `musescore3` CLI in WSL for audio export.
 
 **Why:** MuseScore 4's CLI audio export has been broken since 4.1.1 (produces silent files). MuseScore 3's CLI works reliably for mp3/wav/midi/pdf export. MuseScore 4 can still be used on Windows for viewing scores in the GUI.
+
+---
+
+## D7: Binary threshold at 4.76 (PDMX median at n_ratings >= 10)
+
+**Decision:** Use 4.76 as the good/not-good threshold, not the naive 4.0.
+
+**Why:** PDMX ratings are extremely right-skewed — 98.5% of rated pieces score above 4.0, making a 4.0 threshold useless (98.5/1.5 class split). The median of the filtered subset (n_ratings >= 10) gives a balanced 49/51 split. This means the classifier learns "great vs good" within an already-curated pool, not "music vs noise."
+
+**Implication:** Both the binary classifier and deficiency thresholds in `predict.py` should reference this. If the min_ratings filter changes, the threshold should be recalculated as the new median.
+
+---
+
+## D8: n_ratings >= 10 filter for training data
+
+**Decision:** Only train on pieces with 10 or more ratings, not the minimum 3.
+
+**Why:** Rating reliability improves dramatically with more ratings. At n_ratings=3, a single outlier vote swings the average by 0.5+ points (std=0.212). At n_ratings=10, std drops to 0.171. This costs us 60% of rated data (14K → 5.6K) but the labels are substantially more trustworthy. XGBoost with 32 features only needs ~600 samples minimum (20x feature count), and 5.6K is well above that.
+
+**Trade-off:** Considered n_ratings >= 5 (9.9K samples) as a middle ground. May revisit in a future experiment to A/B test data quantity vs label quality.
+
+---
+
+## D9: Feature importance as primary output, not prediction accuracy
+
+**Decision:** Frame the classifier's value as "interpretable quality signal for the feedback loop," not as a rating predictor.
+
+**Why:** Experiment 001 showed 60.2% accuracy and R²=0.052 — statistically significant (p < 0.0001) but modest. The feature importance rankings are stable, actionable, and directly useful: dynamics_count, tempo_count, chord_vocabulary_size, pitch_class_entropy tell us exactly what LLM compositions need to improve. The feedback loop doesn't need high accuracy — it needs correct direction.
+
+**Why:** MuseScore 4's CLI audio export has been broken since 4.1.1 (produces silent files). MuseScore 3's CLI works reliably for mp3/wav/midi/pdf export. MuseScore 4 can still be used on Windows for viewing scores in the GUI.

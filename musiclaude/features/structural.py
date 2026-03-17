@@ -16,7 +16,9 @@ def extract_structural_features(score: Score) -> dict:
 
     Returns a dict with keys:
         num_parts, total_duration_beats, dynamics_count,
-        tempo_count, time_sig_complexity, num_sections
+        hairpin_count, articulation_count, staccato_count,
+        accent_count, expression_count, tempo_count,
+        time_sig_complexity, num_sections
     """
     features: dict = {}
 
@@ -41,6 +43,54 @@ def extract_structural_features(score: Score) -> dict:
     except Exception:
         logger.debug("dynamics_count extraction failed", exc_info=True)
         features["dynamics_count"] = None
+
+    # --- hairpin_count (crescendo/decrescendo wedges) ---
+    try:
+        from music21 import dynamics as dyn_module
+        hairpins = list(score.recurse().getElementsByClass(dyn_module.DynamicWedge))
+        features["hairpin_count"] = len(hairpins)
+    except Exception:
+        logger.debug("hairpin_count extraction failed", exc_info=True)
+        features["hairpin_count"] = None
+
+    # --- articulation_count + breakdown ---
+    try:
+        total_arts = 0
+        staccato = 0
+        accent = 0
+        tenuto = 0
+        other_art = 0
+        for note in score.flatten().notes:
+            for a in note.articulations:
+                total_arts += 1
+                name = type(a).__name__
+                if name in ("Staccato", "Staccatissimo"):
+                    staccato += 1
+                elif name in ("Accent", "StrongAccent"):
+                    accent += 1
+                elif name == "Tenuto":
+                    tenuto += 1
+                else:
+                    other_art += 1
+        features["articulation_count"] = total_arts
+        features["staccato_count"] = staccato
+        features["accent_count"] = accent
+    except Exception:
+        logger.debug("articulation_count extraction failed", exc_info=True)
+        features["articulation_count"] = None
+        features["staccato_count"] = None
+        features["accent_count"] = None
+
+    # --- expression_count (fermatas, trills, ornaments, etc.) ---
+    try:
+        from music21 import expressions as expr_module
+        exprs = list(score.flatten().getElementsByClass(expr_module.Expression))
+        # Filter out RehearsalMarks which are counted in num_sections
+        exprs = [e for e in exprs if type(e).__name__ != "RehearsalMark"]
+        features["expression_count"] = len(exprs)
+    except Exception:
+        logger.debug("expression_count extraction failed", exc_info=True)
+        features["expression_count"] = None
 
     # --- tempo_count ---
     try:
