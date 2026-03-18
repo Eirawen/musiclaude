@@ -11,6 +11,7 @@ venv/
 env/
 .env
 *.joblib
+!models/*.joblib
 *.pkl
 data/
 output/
@@ -30,7 +31,7 @@ htmlcov/
 !tests/fixtures/*.musicxml
 !examples/*.musicxml
 !examples/*.mp3
-models/
+models/*.csv
 PDMXDataset/
 soundfonts/*.sf2
 soundfonts/*.sf3

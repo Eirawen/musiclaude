@@ -20,40 +20,25 @@ cd musiclaude
 pip install -e ".[dev]"
 ```
 
-### First-Time Setup
+### Models (Included)
 
-**1. Download the PDMX dataset** (for training your own models):
+Pre-trained models ship with the repo in `models/` — no training required. This includes:
+- **Feature profiles** (v1 PDMX + v3 canonical) — percentile-based quality feedback
+- **XGBoost classifier/regressor** — feature importance ranking
+- **Isolation Forest** — anomaly detection for out-of-distribution scores
+
+### Retraining (Optional)
+
+If you want to retrain on your own data or the full PDMX dataset:
 
 ```bash
-# Download from https://zenodo.org/records/14648209
+# Download PDMX from https://zenodo.org/records/14648209
 # Place PDMX.csv in data/, extract mxl.tar.gz into data/
-```
-
-**2. Extract features and train models:**
-
-```bash
 musiclaude-extract --data-dir data/ --output features.csv
 musiclaude-train --features features.csv --output models/
 ```
 
-This produces the quality models in `models/` — the feature profile, XGBoost classifier/regressor, and Isolation Forest anomaly detector. These are required for the feedback loop.
-
-**3. (Optional) Build the canonical profile:**
-
-If you want the v3 canonical profile (trained on Bach, Beethoven, Mozart, etc. instead of MuseScore community ratings):
-
-```bash
-# Clone canonical corpora into data/
-git clone https://github.com/OpenScore/Lieder.git data/openscore-lieder
-git clone https://github.com/OpenScore/Quartets.git data/openscore-quartets
-# ... see codex/experiments/006-canonical-corpus-pipeline.md for full list
-
-# Extract features
-python scripts/extract_canonical_features.py --workers 16
-
-# Build profile
-python scripts/build_canonical_profile.py
-```
+To rebuild the canonical profile from source corpora, see `codex/experiments/006-canonical-corpus-pipeline.md`.
 
 ## Composing Music
 
@@ -188,7 +173,7 @@ codex/               Decision log, experiment writeups, gotchas
 report/              Full research report with analysis plots
 analysis/            Exploration scripts, plots, Streamlit dashboard
 scripts/             Canonical corpus extraction and analysis
-models/              Trained models (not committed, see setup)
+models/              Pre-trained models (included)
 data/                PDMX + canonical corpora (not committed)
 ```
 
