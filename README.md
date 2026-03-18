@@ -2,51 +2,27 @@
 
 AI music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
 
-**Best result:** 90/100 in a blind listening test, produced by a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/musiclaude.md).
+**Best result:** 90/100 in a blind listening test, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/musiclaude.md).
 
-## Quick Start
-
-### Prerequisites
-
-- Python 3.10+
-- [MuseScore 3](https://musescore.org/en/download) (for audio rendering)
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (for composition)
-
-### Install
+## Get Started
 
 ```bash
-git clone https://github.com/your-username/musiclaude.git
+git clone https://github.com/Eirawen/musiclaude.git
 cd musiclaude
-pip install -e ".[dev]"
+conda env create -f environment.yml
+conda activate musiclaude
+pip install -e .
 ```
 
-### Models (Included)
+You'll also need:
+- [MuseScore 3](https://musescore.org/en/download) — renders MusicXML to MP3
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — or any coding agent that can write Python
 
-Pre-trained models ship with the repo in `models/` — no training required. This includes:
-- **Feature profiles** (v1 PDMX + v3 canonical) — percentile-based quality feedback
-- **XGBoost classifier/regressor** — feature importance ranking
-- **Isolation Forest** — anomaly detection for out-of-distribution scores
+Pre-trained models ship in `models/` — you're ready to compose immediately.
 
-### Retraining (Optional)
+## Compose Your First Piece
 
-If you want to retrain on your own data or the full PDMX dataset:
-
-```bash
-# Download PDMX from https://zenodo.org/records/14648209
-# Place PDMX.csv in data/, extract mxl.tar.gz into data/
-musiclaude-extract --data-dir data/ --output features.csv
-musiclaude-train --features features.csv --output models/
-```
-
-To rebuild the canonical profile from source corpora, see `codex/experiments/006-canonical-corpus-pipeline.md`.
-
-## Composing Music
-
-### The Proven Approach: `/compose-minimal`
-
-Our best results come from **minimal prompting** — give a vibe, let Claude compose freely, one round of advisory feedback. This was validated across 11 experiments.
-
-In Claude Code:
+Open Claude Code in the repo and run:
 
 ```
 /compose-minimal A chess game between old friends in a park
@@ -55,28 +31,27 @@ In Claude Code:
 That's it. Claude will:
 1. Choose instrumentation (2-3 parts, typically cello+piano)
 2. Compose freely using music21
-3. Run the quality profile for suggestions
-4. Decide what feedback to incorporate or reject
-5. Render to MP3
+3. Run the quality profile for feedback
+4. Decide what suggestions to accept or reject
+5. Render to MP3 via MuseScore
 
-**Key findings from our experiments:**
-- **2-3 parts max** — duos sound great (avg 87/100), full orchestra doesn't work (avg 68/100)
+Your score lands in `output/` as both `.musicxml` and `.mp3`.
+
+### What We Learned (So You Don't Have To)
+
+After 11 experiments and a lot of blind listening:
+- **2-3 parts max** — duos avg 87/100, full orchestra avg 68/100. The LLM can't orchestrate.
 - **Cello+piano is the sweet spot** — the LLM writes idiomatically for cello
-- **Feedback as suggestions, not mandates** — the model should reject feedback that would hurt coherence
+- **Feedback as suggestions, not mandates** — the model should reject advice that would hurt coherence
 - **One revision round** — more iterations degrade quality
+- **Less constraint = better music** — rigid pipelines, contracts, and mandatory targets all make things worse
 
-### Use Any Coding Agent
+## Use Any Coding Agent
 
-The `/compose-minimal` skill is a Claude Code convenience, but MusicLaude's real value is the **quality assessment pipeline** — the feature profile, XGBoost importance ranking, and Isolation Forest anomaly detection. These work with any LLM-generated MusicXML, regardless of how it was produced.
+`/compose-minimal` is a Claude Code convenience, but the real value is the **quality assessment pipeline**. It works with any LLM-generated MusicXML:
 
-You can compose with:
-- **Claude Code** (via `/compose-minimal` or just asking Claude to write music)
-- **OpenAI Codex** / ChatGPT
-- **Any coding agent** that can write Python + music21
-
-The workflow is always the same:
 1. Have your agent generate a MusicXML score using music21
-2. Run the MusicLaude feedback pipeline on it
+2. Run the feedback pipeline on it
 3. Let the agent decide what to revise
 
 ```python
@@ -92,94 +67,45 @@ result = run_feedback_loop(
 print(result["critique_text"])  # Ranked suggestions for improvement
 ```
 
-### Edit in MuseScore
+Works with Claude Code, OpenAI Codex, Cursor, or anything that can write Python + music21.
 
-Every generated `.musicxml` file can be opened directly in [MuseScore](https://musescore.org). This lets you:
-- **See the full score** — notation, dynamics, articulations, everything the LLM wrote
-- **Edit by hand** — fix wrong notes, adjust voicing, add expression marks
-- **Re-render** — export to MP3/WAV/PDF from MuseScore's GUI
-- **Iterate human + AI** — use MusicLaude for the first draft, polish in MuseScore
+## Edit in MuseScore
+
+Every `.musicxml` file opens in [MuseScore](https://musescore.org) — see the full score, fix notes by hand, add expression, re-export to MP3/PDF. Use MusicLaude for the first draft, polish in MuseScore.
 
 ```bash
-musescore3 output/score.musicxml  # Opens in MuseScore GUI
+musescore3 output/score.musicxml
 ```
 
 ## Best Examples
 
-Here are some highlights from our experiments — listen for yourself:
+Listen for yourself:
 
-### "The Wager" — Cello + Piano (Experiment 010, 90/100)
+### "The Wager" — Cello + Piano (90/100)
 
 *A chess game between old friends in a park — the stakes are a bottle of wine.*
 
-- Score: [`examples/the_wager.musicxml`](examples/the_wager.musicxml)
-- Audio: [`examples/the_wager.mp3`](examples/the_wager.mp3)
-- Condition: v3 canonical profile + one revision round
+- Score: [`examples/the_wager.musicxml`](examples/the_wager.musicxml) | Audio: [`examples/the_wager.mp3`](examples/the_wager.mp3)
+- *"This genuinely sounds like a composed piece. The cello line has real melodic identity."*
 
-### "The Bottle Gambit" — Cello + Piano (Experiment 010, 88/100)
+### "The Bottle Gambit" — Cello + Piano (88/100)
 
-*Same vibe, different agent, autonomous feedback.*
+*Same vibe, different agent run, autonomous feedback decisions.*
 
-- Score: [`examples/the_bottle_gambit.musicxml`](examples/the_bottle_gambit.musicxml)
-- Audio: [`examples/the_bottle_gambit.mp3`](examples/the_bottle_gambit.mp3)
-- Condition: v3 canonical profile + autonomous feedback decisions
+- Score: [`examples/the_bottle_gambit.musicxml`](examples/the_bottle_gambit.musicxml) | Audio: [`examples/the_bottle_gambit.mp3`](examples/the_bottle_gambit.mp3)
+- *"Lovely interplay between the parts. Feels like chamber music."*
 
-### "Matin de Boulangerie" — Clarinet + Piano (Experiment 009, 83/100)
+### "Matin de Boulangerie" — Clarinet + Piano (83/100)
 
 *First love at 17, summer in a French village, working at a bakery.*
 
-- Score: [`examples/matin_de_boulangerie.musicxml`](examples/matin_de_boulangerie.musicxml)
-- Audio: [`examples/matin_de_boulangerie.mp3`](examples/matin_de_boulangerie.mp3)
-- Condition: v1 PDMX profile + one revision round
-
-### Legacy Skills
-
-The original pipeline skills (`/compose`, `/song-contract`, `/assess-quality`) still exist but are not recommended. Experiments showed that rigid contract-to-skill pipelines consistently produce worse music than minimal prompting. See [experiment results](codex/INDEX.md) for details.
-
-## Analysis Dashboard
-
-```bash
-streamlit run analysis/dashboard.py
-```
-
-Opens a Streamlit dashboard with interactive analysis of the PDMX dataset: rating distributions, feature importance, genre breakdowns, and more.
-
-## Running Tests
-
-```bash
-pytest
-```
-
-40 tests covering feature extraction, classification, profile comparison, and validation.
-
-## Project Structure
-
-```
-musiclaude/
-  features/         Feature extraction from MusicXML (harmonic, melodic, structural, orchestration, coherence)
-  classifier/        Quality assessment models (profile, XGBoost, Isolation Forest)
-  validator/         Music theory structural validation
-  compose/           Feedback loop infrastructure
-  render.py          Audio rendering via MuseScore
-
-.claude/skills/
-  compose-minimal/   The experimentally validated approach (recommended)
-  compose/           Legacy pipeline skill
-  song-contract/     Legacy contract skill
-  assess-quality/    Quality assessment skill
-
-experiment/          Blind listening experiments (005-011)
-codex/               Decision log, experiment writeups, gotchas
-report/              Full research report with analysis plots
-analysis/            Exploration scripts, plots, Streamlit dashboard
-scripts/             Canonical corpus extraction and analysis
-models/              Pre-trained models (included)
-data/                PDMX + canonical corpora (not committed)
-```
+- Score: [`examples/matin_de_boulangerie.musicxml`](examples/matin_de_boulangerie.musicxml) | Audio: [`examples/matin_de_boulangerie.mp3`](examples/matin_de_boulangerie.mp3)
+- *"Has a real sense of place. The clarinet is charming."*
 
 ## The Research
 
-11 experiments
+11 blind listening experiments over the course of this project:
+
 | Exp | What We Tested | Result |
 |-----|---------------|--------|
 | 001-004 | Feature extraction + classifier training | 60.2% accuracy, dynamics_count is #1 predictor |
@@ -191,17 +117,53 @@ data/                PDMX + canonical corpora (not committed)
 | 010 | Cello+piano, chess game vibe | **90/100!** Best result. v3 profile wins. |
 | 011 | JRPG theme, free instrumentation | Full orchestra fails. 2 parts >> 6+ parts. |
 
-**The central finding:** the less you constrain the LLM, the better it composes. Rigid pipelines, mandatory feature targets, and detailed contracts all produce worse music than a one-sentence vibe with advisory feedback.
+**The central finding:** the less you constrain the LLM, the better it composes.
 
 Read the [full report](report/musiclaude.md) for the complete story.
 
-## Citation
+## Retraining Models (Optional)
 
-If you use this work, please cite:
+The shipped models work out of the box. If you want to retrain on your own data:
+
+```bash
+# Download PDMX from https://zenodo.org/records/14648209
+# Place PDMX.csv in data/, extract mxl.tar.gz into data/
+musiclaude-extract --data-dir data/ --output features.csv
+musiclaude-train --features features.csv --output models/
+```
+
+To rebuild the canonical profile from source corpora, see `codex/experiments/006-canonical-corpus-pipeline.md`.
+
+## Project Structure
 
 ```
-MusicLaude: LLM Music Composition with Feature Profile Feedback
-https://github.com/your-username/musiclaude
+musiclaude/
+  features/         Feature extraction from MusicXML (42+ features)
+  classifier/        Quality models (profile, XGBoost, Isolation Forest)
+  validator/         Music theory structural validation
+  compose/           Feedback loop infrastructure
+  render.py          Audio rendering via MuseScore
+
+models/              Pre-trained models (included)
+examples/            Best compositions with audio
+experiment/          Blind listening experiments (005-011)
+codex/               Decision log, experiment writeups
+report/              Full research report with plots
+analysis/            Exploration scripts, Streamlit dashboard
+scripts/             Canonical corpus extraction and analysis
+```
+
+## Running Tests
+
+```bash
+pytest  # 40 tests
+```
+
+## Citation
+
+```
+Rachmaniclaude: LLM Music Composition with Feature Profile Feedback
+https://github.com/Eirawen/musiclaude
 ```
 
 ## License
