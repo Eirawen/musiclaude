@@ -28,7 +28,7 @@ def extract_one(filepath: str) -> dict | None:
         logging.disable(logging.WARNING)
 
         from music21 import converter
-        from musiclaude.features.extract import extract_features_from_score
+        from rachmaniclaude.features.extract import extract_features_from_score
 
         score = converter.parse(filepath)
         features = extract_features_from_score(score, filepath=filepath)

@@ -54,7 +54,7 @@ Things that bit us or will bite future agents.
 
 **What:** `setuptools.backends._legacy:_Backend` doesn't exist in current setuptools. Causes `BackendUnavailable` error on `pip install -e`.
 
-**Fix:** Use `setuptools.build_meta` as the build backend. Also need `[tool.setuptools.packages.find]` with `include = ["musiclaude*"]` or setuptools can't discover the package.
+**Fix:** Use `setuptools.build_meta` as the build backend. Also need `[tool.setuptools.packages.find]` with `include = ["rachmaniclaude*"]` or setuptools can't discover the package.
 
 ---
 

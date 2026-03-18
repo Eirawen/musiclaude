@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 from music21 import converter
 
-from musiclaude.features.extract import extract_features_from_file
-from musiclaude.classifier.distribution import DistributionScorer, AnomalyReport
+from rachmaniclaude.features.extract import extract_features_from_file
+from rachmaniclaude.classifier.distribution import DistributionScorer, AnomalyReport
 
 logger = logging.getLogger(__name__)
 

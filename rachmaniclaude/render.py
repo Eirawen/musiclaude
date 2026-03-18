@@ -342,7 +342,7 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) < 3:
-        print("Usage: python -m musiclaude.render <input.musicxml> <output.mp3> [voice_map.json]")
+        print("Usage: python -m rachmaniclaude.render <input.musicxml> <output.mp3> [voice_map.json]")
         print("\nAvailable voices:")
         for inst, voices in list_voices().items():
             print(f"\n  {inst}:")

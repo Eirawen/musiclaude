@@ -872,7 +872,7 @@ def main():
     s = stream.Score()
     s.insert(0, metadata.Metadata())
     s.metadata.title = "Matin de Boulangerie"
-    s.metadata.composer = "MusicLaude"
+    s.metadata.composer = "Rachmaniclaude"
     s.metadata.movementName = "First love at 17, summer in a French village"
 
     cl_part = build_clarinet_part()

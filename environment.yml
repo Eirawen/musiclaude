@@ -1,4 +1,4 @@
-name: musiclaude
+name: rachmaniclaude
 channels:
   - conda-forge
   - defaults

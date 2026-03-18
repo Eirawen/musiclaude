@@ -34,7 +34,7 @@ def main():
                         help="Compare v1 and v2 profiles")
     args = parser.parse_args()
 
-    from musiclaude.classifier.profile import FeatureProfile
+    from rachmaniclaude.classifier.profile import FeatureProfile
 
     # Build v2 profile with combined data
     profile = FeatureProfile()

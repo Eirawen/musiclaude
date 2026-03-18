@@ -120,7 +120,7 @@ Run the feature profile assessment:
 ```python
 python -c "
 import os, json
-from musiclaude.compose.feedback import run_feedback_loop
+from rachmaniclaude.compose.feedback import run_feedback_loop
 
 result = run_feedback_loop(
     musicxml_path='{output_dir}/score.musicxml',

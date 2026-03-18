@@ -5,7 +5,7 @@ import logging
 import os
 from datetime import datetime
 
-from musiclaude.compose.validate import validate_composition
+from rachmaniclaude.compose.validate import validate_composition
 
 logger = logging.getLogger(__name__)
 

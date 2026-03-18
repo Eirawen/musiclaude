@@ -44,7 +44,7 @@ def sample_features_csv():
 
 class TestTraining:
     def test_load_and_prepare(self, sample_features_csv):
-        from musiclaude.classifier.train import load_and_prepare
+        from rachmaniclaude.classifier.train import load_and_prepare
 
         X, y = load_and_prepare(sample_features_csv)
 
@@ -55,7 +55,7 @@ class TestTraining:
         assert "rating" not in X.columns
 
     def test_train_binary_classifier(self, sample_features_csv):
-        from musiclaude.classifier.train import load_and_prepare, train_binary_classifier
+        from rachmaniclaude.classifier.train import load_and_prepare, train_binary_classifier
 
         X, y = load_and_prepare(sample_features_csv)
         model, metrics = train_binary_classifier(X, y)
@@ -67,7 +67,7 @@ class TestTraining:
         assert 0 <= metrics["f1"] <= 1
 
     def test_train_regressor(self, sample_features_csv):
-        from musiclaude.classifier.train import load_and_prepare, train_regressor
+        from rachmaniclaude.classifier.train import load_and_prepare, train_regressor
 
         X, y = load_and_prepare(sample_features_csv)
         model, metrics = train_regressor(X, y)
@@ -78,7 +78,7 @@ class TestTraining:
         assert metrics["rmse"] >= 0
 
     def test_full_pipeline(self, sample_features_csv):
-        from musiclaude.classifier.train import (
+        from rachmaniclaude.classifier.train import (
             load_and_prepare,
             train_binary_classifier,
             train_regressor,
@@ -108,12 +108,12 @@ class TestTraining:
 
 class TestPrediction:
     def test_predict_from_features(self, sample_features_csv):
-        from musiclaude.classifier.train import (
+        from rachmaniclaude.classifier.train import (
             load_and_prepare,
             train_binary_classifier,
             train_regressor,
         )
-        from musiclaude.classifier.predict import QualityPredictor
+        from rachmaniclaude.classifier.predict import QualityPredictor
         import joblib
 
         X, y = load_and_prepare(sample_features_csv)
@@ -139,8 +139,8 @@ class TestPrediction:
             assert 0 <= result["predicted_rating"] <= 5
 
     def test_get_feature_deficiencies(self, sample_features_csv):
-        from musiclaude.classifier.train import load_and_prepare, train_binary_classifier
-        from musiclaude.classifier.predict import QualityPredictor
+        from rachmaniclaude.classifier.train import load_and_prepare, train_binary_classifier
+        from rachmaniclaude.classifier.predict import QualityPredictor
         import joblib
 
         X, y = load_and_prepare(sample_features_csv)

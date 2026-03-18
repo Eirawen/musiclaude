@@ -6,7 +6,7 @@ import pytest
 import tempfile
 import os
 
-from musiclaude.classifier.distribution import DistributionScorer, DISTRIBUTION_FEATURES
+from rachmaniclaude.classifier.distribution import DistributionScorer, DISTRIBUTION_FEATURES
 
 
 @pytest.fixture

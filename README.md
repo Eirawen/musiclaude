@@ -1,8 +1,8 @@
 # Rachmaniclaude
 
-AI music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
+Language model music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
 
-**Best result:** 90/100 in a blind listening test, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/musiclaude.md).
+**Best result:** 90/100 in a blind listening test, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/rachmaniclaude.md).
 
 ## Get Started
 
@@ -10,7 +10,7 @@ AI music composition and quality assessment. Claude composes MusicXML, a feature
 git clone https://github.com/Eirawen/musiclaude.git
 cd musiclaude
 conda env create -f environment.yml
-conda activate musiclaude
+conda activate rachmaniclaude
 pip install -e .
 ```
 
@@ -37,13 +37,13 @@ That's it. Claude will:
 
 Your score lands in `output/` as both `.musicxml` and `.mp3`.
 
-### What We Learned (So You Don't Have To)
+### What We Learned 
 
 After 11 experiments and a lot of blind listening:
 - **2-3 parts max** — duos avg 87/100, full orchestra avg 68/100. The LLM can't orchestrate.
-- **Cello+piano is the sweet spot** — the LLM writes idiomatically for cello
-- **Feedback as suggestions, not mandates** — the model should reject advice that would hurt coherence
-- **One revision round** — more iterations degrade quality
+- **Cello+piano is the sweet spot for duets**
+- **Feedback as suggestions, not mandates** — the agent must be instructed that it can freely reject validator advice 
+- **One revision round** — more iterations degrade quality.
 - **Less constraint = better music** — rigid pipelines, contracts, and mandatory targets all make things worse
 
 ## Use Any Coding Agent
@@ -55,7 +55,7 @@ After 11 experiments and a lot of blind listening:
 3. Let the agent decide what to revise
 
 ```python
-from musiclaude.compose.feedback import run_feedback_loop
+from rachmaniclaude.compose.feedback import run_feedback_loop
 
 result = run_feedback_loop(
     musicxml_path="path/to/score.musicxml",
@@ -71,7 +71,7 @@ Works with Claude Code, OpenAI Codex, Cursor, or anything that can write Python 
 
 ## Edit in MuseScore
 
-Every `.musicxml` file opens in [MuseScore](https://musescore.org) — see the full score, fix notes by hand, add expression, re-export to MP3/PDF. Use MusicLaude for the first draft, polish in MuseScore.
+Every `.musicxml` file opens in [MuseScore](https://musescore.org) — see the full score, fix notes by hand, add expression, re-export to MP3/PDF. Use Rachmaniclaude for the first draft, polish in MuseScore.
 
 ```bash
 musescore3 output/score.musicxml
@@ -119,7 +119,7 @@ Listen for yourself:
 
 **The central finding:** the less you constrain the LLM, the better it composes.
 
-Read the [full report](report/musiclaude.md) for the complete story.
+Read the [full report](report/rachmaniclaude.md) for the complete story.
 
 ## Retraining Models (Optional)
 
@@ -128,8 +128,8 @@ The shipped models work out of the box. If you want to retrain on your own data:
 ```bash
 # Download PDMX from https://zenodo.org/records/14648209
 # Place PDMX.csv in data/, extract mxl.tar.gz into data/
-musiclaude-extract --data-dir data/ --output features.csv
-musiclaude-train --features features.csv --output models/
+rachmaniclaude-extract --data-dir data/ --output features.csv
+rachmaniclaude-train --features features.csv --output models/
 ```
 
 To rebuild the canonical profile from source corpora, see `codex/experiments/006-canonical-corpus-pipeline.md`.
@@ -137,7 +137,7 @@ To rebuild the canonical profile from source corpora, see `codex/experiments/006
 ## Project Structure
 
 ```
-musiclaude/
+rachmaniclaude/
   features/         Feature extraction from MusicXML (42+ features)
   classifier/        Quality models (profile, XGBoost, Isolation Forest)
   validator/         Music theory structural validation

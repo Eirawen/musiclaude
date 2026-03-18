@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def build_profile_from_df(df, feature_names, importances):
     """Build a FeatureProfile from a filtered DataFrame."""
-    from musiclaude.classifier.profile import FeatureProfile
+    from rachmaniclaude.classifier.profile import FeatureProfile
 
     profile = FeatureProfile()
     profile.feature_names = feature_names

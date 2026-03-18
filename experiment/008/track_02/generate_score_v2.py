@@ -913,5 +913,5 @@ def write_musicxml(score, filepath):
 
 if __name__ == "__main__":
     score = build_score()
-    write_musicxml(score, "/home/khaled/musiclaude/experiment/008/track_02/score.musicxml")
+    write_musicxml(score, "/home/khaled/rachmaniclaude/experiment/008/track_02/score.musicxml")
     print("Done generating v2 score.")

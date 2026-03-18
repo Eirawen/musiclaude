@@ -1,4 +1,4 @@
-"""MusicLaude 3-Axis Listening Study — Streamlit app for validating the classifier.
+"""Rachmaniclaude 3-Axis Listening Study — Streamlit app for validating the classifier.
 
 Based on the PDMX listening study design (arXiv:2409.10831). Each trial presents
 a single audio clip rated on three axes: Correctness, Richness, Overall Quality.
@@ -156,7 +156,7 @@ def participant_seed(participant_id: str) -> int:
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="MusicLaude Listening Study",
+    page_title="Rachmaniclaude Listening Study",
     layout="centered",
 )
 

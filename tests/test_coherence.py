@@ -74,7 +74,7 @@ def _make_two_part_score():
 
 class TestNoteDensity:
     def test_basic(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_scale_score()
         features = extract_coherence_features(score)
@@ -85,7 +85,7 @@ class TestNoteDensity:
 
 class TestRestRatio:
     def test_no_rests(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_scale_score()
         features = extract_coherence_features(score)
@@ -93,7 +93,7 @@ class TestRestRatio:
         assert features["rest_ratio"] == pytest.approx(0.0, abs=0.01)
 
     def test_with_rests(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_score_with_rests()
         features = extract_coherence_features(score)
@@ -104,7 +104,7 @@ class TestRestRatio:
 
 class TestPitchClassEntropy:
     def test_scale_entropy(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_scale_score()
         features = extract_coherence_features(score)
@@ -115,7 +115,7 @@ class TestPitchClassEntropy:
         assert 2.5 <= features["pitch_class_entropy"] <= 3.0
 
     def test_single_note_zero_entropy(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         s = stream.Score()
         p = stream.Part()
@@ -132,7 +132,7 @@ class TestPitchClassEntropy:
 
 class TestIntervalEntropy:
     def test_uniform_intervals(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         # All intervals are +2 semitones (whole steps)
         score = _make_scale_score()
@@ -144,7 +144,7 @@ class TestIntervalEntropy:
 
 class TestMelodicAutocorrelation:
     def test_structured_melody(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         # Repeating pattern: C D E F | C D E F (high autocorrelation)
         s = stream.Score()
@@ -169,7 +169,7 @@ class TestMelodicAutocorrelation:
 
 class TestRhythmicIndependence:
     def test_different_rhythms(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_two_part_score()
         features = extract_coherence_features(score)
@@ -180,7 +180,7 @@ class TestRhythmicIndependence:
             assert features["rhythmic_independence"] > 0
 
     def test_single_part_returns_none(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         score = _make_scale_score()
         features = extract_coherence_features(score)
@@ -190,7 +190,7 @@ class TestRhythmicIndependence:
 
 class TestStrongBeatConsonance:
     def test_consonant_two_parts(self):
-        from musiclaude.features.coherence import extract_coherence_features
+        from rachmaniclaude.features.coherence import extract_coherence_features
 
         # C5 over C3 = octave (consonant), D5 over E3 = minor 7th (less consonant)
         score = _make_two_part_score()

@@ -250,7 +250,7 @@ def main():
     )
 
     # Distribution scorer (anomaly detection — works even on LLM-generated music)
-    from musiclaude.classifier.distribution import DistributionScorer
+    from rachmaniclaude.classifier.distribution import DistributionScorer
 
     # Fit on ALL features (not just rated ones) — we want the full distribution
     all_df = pd.read_csv(args.features)

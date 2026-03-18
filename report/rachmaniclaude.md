@@ -1,8 +1,8 @@
-# MusicLaude: What Happens When You Let an LLM Compose Music and Then Grade Its Own Homework
+# Rachmaniclaude: What Happens When You Let an LLM Compose Music and Then Grade Its Own Homework
 
 ## What is this?
 
-MusicLaude is a system where an LLM (Claude) composes music as MusicXML notation, a quality assessment pipeline trained on 250K+ human-rated scores provides feedback, and the LLM decides whether to revise. Over 11 experiments across two days, we discovered that **the less you constrain the LLM, the better it composes** — and that the choice of instrument matters more than anything else we tested.
+Rachmaniclaude is a system where an LLM (Claude) composes music as MusicXML notation, a quality assessment pipeline trained on 250K+ human-rated scores provides feedback, and the LLM decides whether to revise. Over 11 experiments across two days, we discovered that **the less you constrain the LLM, the better it composes** — and that the choice of instrument matters more than anything else we tested.
 
 Our best piece scored 90/100 in a blind listening test. It was produced by the simplest possible setup: a one-sentence vibe ("a chess game between old friends in a park"), cello + piano, and one round of advisory feedback.
 
@@ -195,10 +195,10 @@ One-sentence vibe → LLM composes freely (2 parts max)
 
 ## Try It Yourself
 
-MusicLaude's quality pipeline works with **any coding agent** — Claude Code, OpenAI Codex, ChatGPT, or anything that can write music21 Python. The value is in the assessment, not the specific composer.
+Rachmaniclaude's quality pipeline works with **any coding agent** — Claude Code, OpenAI Codex, ChatGPT, or anything that can write music21 Python. The value is in the assessment, not the specific composer.
 
 ```python
-from musiclaude.compose.feedback import run_feedback_loop
+from rachmaniclaude.compose.feedback import run_feedback_loop
 
 result = run_feedback_loop(
     musicxml_path="path/to/score.musicxml",

@@ -2,7 +2,7 @@
 
 **Paper:** "PDMX: A Large-Scale Public Domain MusicXML Dataset for Symbolic Music Processing" (arXiv:2409.10831v1)
 
-## Key Findings Relevant to MusicLaude
+## Key Findings Relevant to Rachmaniclaude
 
 ### They Validated Our Approach
 - Higher-rated compositions have higher PCE (pitch class entropy) and lower SC (scale consistency)

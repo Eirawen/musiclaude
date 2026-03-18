@@ -114,7 +114,7 @@ Generate a complete, valid MusicXML file. Follow these rules strictly:
     <work-title>TITLE</work-title>
   </work>
   <identification>
-    <creator type="composer">MusicLaude AI</creator>
+    <creator type="composer">Rachmaniclaude AI</creator>
   </identification>
   <part-list>
     <score-part id="P1">
@@ -161,7 +161,7 @@ Run the feature profile assessment to get ranked improvement instructions:
 ```python
 python -c "
 import os, json
-from musiclaude.compose.feedback import run_feedback_loop
+from rachmaniclaude.compose.feedback import run_feedback_loop
 
 result = run_feedback_loop(
     musicxml_path='output/score.musicxml',

@@ -1,4 +1,4 @@
-"""MusicLaude Analysis Dashboard — Streamlit + Plotly."""
+"""Rachmaniclaude Analysis Dashboard — Streamlit + Plotly."""
 
 import streamlit as st
 import plotly.express as px
@@ -9,7 +9,7 @@ import numpy as np
 import os
 
 st.set_page_config(
-    page_title="MusicLaude — PDMX Analysis",
+    page_title="Rachmaniclaude — PDMX Analysis",
     page_icon="🎵",
     layout="wide",
 )
@@ -48,7 +48,7 @@ reliable = rated[rated["n_ratings"] >= 10].copy()
 # Sidebar
 # ---------------------------------------------------------------------------
 
-st.sidebar.title("MusicLaude")
+st.sidebar.title("Rachmaniclaude")
 st.sidebar.markdown("PDMX Dataset Analysis & Quality Classifier")
 
 min_ratings = st.sidebar.slider("Min ratings filter", 3, 50, 10)
@@ -421,7 +421,7 @@ elif page == "Feature Extraction Results":
         st.warning(
             "No `features.csv` found yet. Run the extraction:\n\n"
             "```bash\n"
-            "python -m musiclaude.features.extract \\\n"
+            "python -m rachmaniclaude.features.extract \\\n"
             "  --data-dir data/mxl \\\n"
             "  --pdmx-csv PDMXDataset/PDMX.csv \\\n"
             "  --output features.csv \\\n"

@@ -33,7 +33,7 @@ instructions         (both must pass)
 - **Ranking:** Gaps weighted by XGBoost feature importance → priority-ordered improvement list
 - **Output:** Specific instructions like "dynamics_count=0, percentile 3, target median 8. Add dynamic markings."
 - **Delta tracking:** Shows what improved/regressed between iterations
-- **Code:** `musiclaude/classifier/profile.py`
+- **Code:** `rachmaniclaude/classifier/profile.py`
 - **Model:** `models/feature_profile.joblib`
 - **Strengths:** Gives Claude actionable, specific, ranked instructions. Validated in blind listening test: +7.0 avg improvement over baseline (experiment 005).
 - **Weakness:** Limited to features we can extract. Can't assess compositional structure, thematic development, or voice leading quality.

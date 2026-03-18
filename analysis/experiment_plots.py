@@ -1,4 +1,4 @@
-"""Generate analysis plots for the MusicLaude report.
+"""Generate analysis plots for the Rachmaniclaude report.
 
 Covers the experimental arc from 005 through 011.
 """

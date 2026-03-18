@@ -1,4 +1,4 @@
-# MusicLaude
+# Rachmaniclaude
 
 AI music composition and quality assessment system.
 
@@ -19,20 +19,20 @@ Key rules from our experiments:
 The legacy skills (`/compose`, `/song-contract`, `/assess-quality`) still exist but are not recommended.
 
 ## Project Structure
-- `musiclaude/features/` - Feature extraction from MusicXML (42+ features)
+- `rachmaniclaude/features/` - Feature extraction from MusicXML (42+ features)
   - `harmonic.py` - Chord vocabulary, extended chords, cadences, key stability, modulations
   - `melodic.py` - Intervals, stepwise motion, range, contour, rhythm, repetition
   - `structural.py` - Parts, duration, dynamics, tempo, time signature complexity, sections
   - `orchestration.py` - Instruments, voice crossings, range utilization, doubling
   - `coherence.py` - LLM-targeted: note density, rest ratio, pitch/interval entropy, melodic autocorrelation, phrase regularity, strong-beat consonance, rhythmic independence
   - `extract.py` - Pipeline: directory → DataFrame with all features
-- `musiclaude/classifier/` - Quality assessment models
+- `rachmaniclaude/classifier/` - Quality assessment models
   - `profile.py` - **Primary feedback**: percentile-based comparison, ranked by feature importance
   - `train.py` - XGBoost classifier + regressor + distribution scorer training
   - `predict.py` - QualityPredictor combining XGBoost + anomaly detection (secondary reference)
   - `distribution.py` - Isolation Forest anomaly scorer
-- `musiclaude/validator/` - Music theory structural validation
-- `musiclaude/compose/` - Feedback loop infrastructure
+- `rachmaniclaude/validator/` - Music theory structural validation
+- `rachmaniclaude/compose/` - Feedback loop infrastructure
 - `.claude/skills/compose-minimal/` - **Recommended**: minimal vibe → compose → advisory feedback
 - `.claude/skills/compose/` - Legacy pipeline skill (not recommended)
 - `experiment/` - 11 blind listening experiments (005-011)
@@ -52,8 +52,8 @@ The legacy skills (`/compose`, `/song-contract`, `/assess-quality`) still exist 
 ## Commands
 - `pip install -e ".[dev]"` - Install in dev mode
 - `pytest` - Run tests (40 tests)
-- `musiclaude-extract --data-dir data/ --output features.csv` - Extract features
-- `musiclaude-train --features features.csv --output models/` - Train classifier + distribution scorer
+- `rachmaniclaude-extract --data-dir data/ --output features.csv` - Extract features
+- `rachmaniclaude-train --features features.csv --output models/` - Train classifier + distribution scorer
 - `streamlit run analysis/dashboard.py` - Launch analysis dashboard
 
 ## Quality Assessment

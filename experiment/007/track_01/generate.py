@@ -1331,7 +1331,7 @@ score.insert(0, clarinet_part)
 score.insert(0, piano_part)
 
 # Write
-output_path = '/home/khaled/musiclaude/experiment/007/track_01/score.musicxml'
+output_path = '/home/khaled/rachmaniclaude/experiment/007/track_01/score.musicxml'
 score.write('musicxml', fp=output_path)
 print(f"Score written to {output_path}")
 

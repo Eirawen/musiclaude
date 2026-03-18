@@ -21,11 +21,11 @@ def extract_muspy_features(filepath: str) -> dict | None:
         features = {"filepath": filepath}
 
         # scale_consistency
-        from musiclaude.features.harmonic import _scale_consistency
+        from rachmaniclaude.features.harmonic import _scale_consistency
         features["scale_consistency"] = _scale_consistency(score)
 
         # groove_consistency
-        from musiclaude.features.coherence import _groove_consistency
+        from rachmaniclaude.features.coherence import _groove_consistency
         features["groove_consistency"] = _groove_consistency(score)
 
         return features

@@ -34,7 +34,7 @@ def main():
                         help="Compare v1 and v3 profiles")
     args = parser.parse_args()
 
-    from musiclaude.classifier.profile import FeatureProfile
+    from rachmaniclaude.classifier.profile import FeatureProfile
 
     # Load regressor for feature names and importance rankings
     if not os.path.exists(args.regressor_path):

@@ -33,7 +33,7 @@ If no vibe is provided as an argument, ask the user for one.
 4. **Get feedback.** Run the quality profile:
    ```python
    python -c "
-   from musiclaude.compose.feedback import run_feedback_loop
+   from rachmaniclaude.compose.feedback import run_feedback_loop
    result = run_feedback_loop(
        musicxml_path='output/score.musicxml',
        output_dir='output',

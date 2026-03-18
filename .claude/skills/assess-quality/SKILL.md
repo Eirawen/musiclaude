@@ -28,7 +28,7 @@ You assess a generated MusicXML composition using the feature profile system (pe
 ```python
 python -c "
 import json
-from musiclaude.compose.feedback import run_feedback_loop
+from rachmaniclaude.compose.feedback import run_feedback_loop
 
 import os
 result = run_feedback_loop(
@@ -53,8 +53,8 @@ If models aren't available, fall back to structural validation and feature inspe
 
 ```python
 python -c "
-from musiclaude.features.extract import extract_features_from_file
-from musiclaude.validator.structural import validate_file
+from rachmaniclaude.features.extract import extract_features_from_file
+from rachmaniclaude.validator.structural import validate_file
 
 result = validate_file('SCORE_PATH')
 print(result.summary())

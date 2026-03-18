@@ -11,11 +11,11 @@ import pandas as pd
 from music21 import converter
 from tqdm import tqdm
 
-from musiclaude.features.harmonic import extract_harmonic_features
-from musiclaude.features.melodic import extract_melodic_features
-from musiclaude.features.structural import extract_structural_features
-from musiclaude.features.orchestration import extract_orchestration_features
-from musiclaude.features.coherence import extract_coherence_features
+from rachmaniclaude.features.harmonic import extract_harmonic_features
+from rachmaniclaude.features.melodic import extract_melodic_features
+from rachmaniclaude.features.structural import extract_structural_features
+from rachmaniclaude.features.orchestration import extract_orchestration_features
+from rachmaniclaude.features.coherence import extract_coherence_features
 
 logger = logging.getLogger(__name__)
 
@@ -184,7 +184,7 @@ def extract_features_from_directory(
 
 
 def main():
-    """Entry point for musiclaude-extract command."""
+    """Entry point for rachmaniclaude-extract command."""
     parser = argparse.ArgumentParser(description="Extract musical features from MusicXML files")
     parser.add_argument("--data-dir", required=True, help="Directory containing MusicXML files")
     parser.add_argument("--pdmx-csv", default=None, help="Path to PDMX.csv for ratings")

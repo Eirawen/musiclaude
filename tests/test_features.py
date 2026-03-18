@@ -59,7 +59,7 @@ def _make_two_part_score():
 
 class TestHarmonicFeatures:
     def test_basic_extraction(self):
-        from musiclaude.features.harmonic import extract_harmonic_features
+        from rachmaniclaude.features.harmonic import extract_harmonic_features
 
         score = _make_simple_score()
         features = extract_harmonic_features(score)
@@ -72,7 +72,7 @@ class TestHarmonicFeatures:
         assert "cadence_count_authentic" in features
 
     def test_key_stability_in_key(self):
-        from musiclaude.features.harmonic import extract_harmonic_features
+        from rachmaniclaude.features.harmonic import extract_harmonic_features
 
         # All notes in C major scale — should have high key stability
         score = _make_simple_score()
@@ -84,7 +84,7 @@ class TestHarmonicFeatures:
 
 class TestMelodicFeatures:
     def test_basic_extraction(self):
-        from musiclaude.features.melodic import extract_melodic_features
+        from rachmaniclaude.features.melodic import extract_melodic_features
 
         score = _make_simple_score()
         features = extract_melodic_features(score)
@@ -99,7 +99,7 @@ class TestMelodicFeatures:
         assert "repetition_density" in features
 
     def test_stepwise_motion(self):
-        from musiclaude.features.melodic import extract_melodic_features
+        from rachmaniclaude.features.melodic import extract_melodic_features
 
         # C D E F G A B C is all stepwise
         score = _make_simple_score()
@@ -109,7 +109,7 @@ class TestMelodicFeatures:
         assert features["avg_interval_size"] <= 2.0
 
     def test_melodic_range(self):
-        from musiclaude.features.melodic import extract_melodic_features
+        from rachmaniclaude.features.melodic import extract_melodic_features
 
         score = _make_simple_score()
         features = extract_melodic_features(score)
@@ -118,7 +118,7 @@ class TestMelodicFeatures:
         assert features["melodic_range"] == 12
 
     def test_contour(self):
-        from musiclaude.features.melodic import extract_melodic_features
+        from rachmaniclaude.features.melodic import extract_melodic_features
 
         # All ascending: C D E F G A B C
         score = _make_simple_score()
@@ -129,7 +129,7 @@ class TestMelodicFeatures:
         assert features["pct_static"] == 0.0
 
     def test_rhythmic_variety(self):
-        from musiclaude.features.melodic import extract_melodic_features
+        from rachmaniclaude.features.melodic import extract_melodic_features
 
         score = _make_simple_score()
         features = extract_melodic_features(score)
@@ -140,7 +140,7 @@ class TestMelodicFeatures:
 
 class TestStructuralFeatures:
     def test_basic_extraction(self):
-        from musiclaude.features.structural import extract_structural_features
+        from rachmaniclaude.features.structural import extract_structural_features
 
         score = _make_simple_score()
         features = extract_structural_features(score)
@@ -152,7 +152,7 @@ class TestStructuralFeatures:
         assert features["time_sig_complexity"] == 0.0  # 4/4 is simple
 
     def test_compound_time(self):
-        from musiclaude.features.structural import extract_structural_features
+        from rachmaniclaude.features.structural import extract_structural_features
 
         s = stream.Score()
         p = stream.Part()
@@ -168,7 +168,7 @@ class TestStructuralFeatures:
 
 class TestOrchestrationFeatures:
     def test_basic_extraction(self):
-        from musiclaude.features.orchestration import extract_orchestration_features
+        from rachmaniclaude.features.orchestration import extract_orchestration_features
 
         score = _make_two_part_score()
         features = extract_orchestration_features(score)
@@ -179,7 +179,7 @@ class TestOrchestrationFeatures:
         assert "doubling_score" in features
 
     def test_no_voice_crossings(self):
-        from musiclaude.features.orchestration import extract_orchestration_features
+        from rachmaniclaude.features.orchestration import extract_orchestration_features
 
         # Upper part is always higher than lower part
         score = _make_two_part_score()
@@ -190,7 +190,7 @@ class TestOrchestrationFeatures:
 
 class TestFullExtraction:
     def test_extract_features_returns_all_keys(self):
-        from musiclaude.features.extract import extract_features_from_file
+        from rachmaniclaude.features.extract import extract_features_from_file
         import tempfile
         import os
 

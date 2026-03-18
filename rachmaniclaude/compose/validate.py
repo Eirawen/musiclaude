@@ -5,10 +5,10 @@ import os
 
 from music21 import converter
 
-from musiclaude.validator.structural import validate_score, ValidationResult
-from musiclaude.features.extract import extract_features_from_file
-from musiclaude.classifier.predict import QualityPredictor
-from musiclaude.classifier.distribution import DistributionScorer
+from rachmaniclaude.validator.structural import validate_score, ValidationResult
+from rachmaniclaude.features.extract import extract_features_from_file
+from rachmaniclaude.classifier.predict import QualityPredictor
+from rachmaniclaude.classifier.distribution import DistributionScorer
 
 logger = logging.getLogger(__name__)
 
@@ -124,7 +124,7 @@ def validate_composition(
     if profile_path is None:
         profile_path = os.path.join(os.path.dirname(classifier_path or "models/"), "feature_profile.joblib")
     if os.path.exists(profile_path):
-        from musiclaude.classifier.profile import FeatureProfile
+        from rachmaniclaude.classifier.profile import FeatureProfile
         profile = FeatureProfile.load(profile_path)
         comparison = profile.compare(features, previous_features=previous_features)
         result["profile_comparison"] = comparison

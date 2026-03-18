@@ -1914,7 +1914,7 @@ def main():
 
     output = header + xml_str
 
-    outpath = "/home/khaled/musiclaude/experiment/007/track_03/score.musicxml"
+    outpath = "/home/khaled/rachmaniclaude/experiment/007/track_03/score.musicxml"
     with open(outpath, "w", encoding="utf-8") as f:
         f.write(output)
     print(f"Written to {outpath}")

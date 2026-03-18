@@ -19,7 +19,7 @@ def reinfer_one(midi_path: str) -> dict | None:
     """Re-run calibrated inference on one MIDI file."""
     try:
         from music21 import converter
-        from musiclaude.features.midi_inference import infer_all
+        from rachmaniclaude.features.midi_inference import infer_all
 
         score = converter.parse(midi_path)
         result = infer_all(score)

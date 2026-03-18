@@ -1340,7 +1340,7 @@ def main():
     s = stream.Score()
     s.insert(0, metadata.Metadata())
     s.metadata.title = "The Wine Gambit"
-    s.metadata.composer = "MusicLaude"
+    s.metadata.composer = "Rachmaniclaude"
     s.metadata.movementName = "A chess game between old friends"
 
     vc_part = build_cello_part()

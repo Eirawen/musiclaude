@@ -3,7 +3,7 @@
 import pytest
 from music21 import stream, note, chord, meter, key, tempo, dynamics
 
-from musiclaude.validator.structural import validate_score, ValidationResult
+from rachmaniclaude.validator.structural import validate_score, ValidationResult
 
 
 def _make_valid_score():

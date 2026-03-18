@@ -1,4 +1,4 @@
-# MusicLaude Codex
+# Rachmaniclaude Codex
 
 LLM-composed music as structured text (MusicXML), quality-assessed by feature profile comparison against canonical repertoire distributions, iteratively improved via ranked feedback. Core thesis: feature importance from XGBoost training is stable and actionable — telling an LLM "your dynamics_count is at the 3rd percentile, target is 14" produces better music than predicting a rating. Canonical repertoire (Bach, Beethoven, Mozart, Schubert, Chopin) IS definitionally good music — no human ratings needed.
 
@@ -72,7 +72,7 @@ Experiment logs with setup, results, findings, and what we'd do differently.
 
 | File | Purpose |
 |------|---------|
-| [../report/musiclaude.md](../report/musiclaude.md) | Full paper draft with sections 1-10, TODO placeholders for results |
+| [../report/rachmaniclaude.md](../report/rachmaniclaude.md) | Full paper draft with sections 1-10, TODO placeholders for results |
 
 ## Listening Study
 

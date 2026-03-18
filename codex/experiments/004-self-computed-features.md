@@ -69,8 +69,8 @@ Changed pass/fail from binary classifier probability to regressor predicted rati
 |----------|------|
 | Features v3 CSV | `features_v3.csv` (25,561 rows, 46 cols) |
 | MusPy feature extraction script | `scripts/extract_muspy_features.py` |
-| Updated harmonic features | `musiclaude/features/harmonic.py` (+scale_consistency) |
-| Updated coherence features | `musiclaude/features/coherence.py` (+groove_consistency) |
-| Updated validation pipeline | `musiclaude/compose/validate.py` (regressor-based pass/fail) |
-| Updated predictor | `musiclaude/classifier/predict.py` (handles missing features) |
+| Updated harmonic features | `rachmaniclaude/features/harmonic.py` (+scale_consistency) |
+| Updated coherence features | `rachmaniclaude/features/coherence.py` (+groove_consistency) |
+| Updated validation pipeline | `rachmaniclaude/compose/validate.py` (regressor-based pass/fail) |
+| Updated predictor | `rachmaniclaude/classifier/predict.py` (handles missing features) |
 | Models | `models/` (overwritten) |

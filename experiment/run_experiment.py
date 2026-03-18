@@ -28,13 +28,13 @@ BLIND_DIR = os.path.join(EXPERIMENT_DIR, "blind")
 
 def extract_features(musicxml_path: str) -> dict | None:
     """Extract features from a MusicXML file."""
-    from musiclaude.features.extract import extract_features_from_file
+    from rachmaniclaude.features.extract import extract_features_from_file
     return extract_features_from_file(musicxml_path)
 
 
 def get_xgboost_feedback(features: dict) -> str:
     """Get feedback using the old XGBoost prediction system."""
-    from musiclaude.classifier.predict import QualityPredictor
+    from rachmaniclaude.classifier.predict import QualityPredictor
 
     predictor = QualityPredictor(
         "models/quality_classifier.joblib",
@@ -66,7 +66,7 @@ def get_xgboost_feedback(features: dict) -> str:
 
 def get_profile_feedback(features: dict) -> str:
     """Get feedback using the new percentile-based profile system."""
-    from musiclaude.classifier.profile import FeatureProfile
+    from rachmaniclaude.classifier.profile import FeatureProfile
 
     profile = FeatureProfile.load("models/feature_profile.joblib")
     comparison = profile.compare(features)
