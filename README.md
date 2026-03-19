@@ -42,9 +42,56 @@ Your score lands in `output/` as both `.musicxml` and `.mp3`.
 After 11 experiments and a lot of blind listening:
 - **2-3 parts max** — duos sound good, full orchestra falls apart. The LLM can't orchestrate.
 - **Cello+piano is the sweet spot for duets**
-- **Feedback as suggestions, not mandates** — the agent must be instructed that it can freely reject validator advice
+- **Feedback as suggestions, not mandates** — the agent must be free to reject feedback, and when it does, the music is better for it
 - **One revision round** — more iterations degrade quality.
 - **Less constraint = better music** — rigid pipelines, contracts, and mandatory targets all make things worse
+
+### How It Thinks About Music
+
+These are the unedited revision notes from [one of the agents](experiment/010/track_03/notes.md) — what it chose to accept and reject from the quality profile feedback:
+
+What it accepted:
+
+```
+Hairpin count (0 -> 5): Added crescendo and diminuendo hairpins in the cello
+(mm. 10, 29, 39) and piano (mm. 29-30). These genuinely improve the phrasing —
+the crescendo into the gambit's peak and the diminuendo into the endgame's
+reflection are more expressive now.
+
+Range utilization (0.264 -> 0.305): Extended the cello down to C2 (open string,
+m. 41) and up to A5 (stratosphere, m. 30 — the peak of the gambit). Extended
+piano RH up to A5/G5 in the endgame climax (m. 37), and piano LH down to D1
+for the final note (m. 50). These extensions are dramatic moments that earn
+the extreme registers.
+
+Groove consistency (partial): Regularized the piano LH in Section A to a
+consistent bass-fifth-octave waltz pattern, and Section B to a consistent
+staccato bass-fifth-rest pattern. This makes the piano's role as "the board"
+more stable — the consistency lets the cello's expressive freedom stand out
+against it.
+```
+
+What it rejected:
+
+```
+Modulation count (5 vs target 10): The piece has clear key areas — D minor,
+F major tonicization, Bb major gambit, return to D minor, Picardy to D major.
+Ten modulations in 50 measures would make it frantic. The chess game is focused
+and deliberate, not a tour of key signatures.
+
+Phrase length regularity (0.753 vs target 0.992): The sections are
+12+12+8+12+6 measures. The 8-bar gambit is intentionally short — it's a
+surprise move, quick and decisive. The 6-bar coda is a handshake — warm,
+brief, final. Forcing 4/8-bar regularity would kill the narrative pacing.
+
+Groove consistency (remaining gap, 0.784 vs 0.839): The cello is a singing
+melodic voice — its rhythmic variety is the whole point. The model wants all
+parts to have regular rhythmic patterns, but that would turn the cello into
+an accompaniment instrument. The piano provides the rhythmic backbone; the
+cello provides the soul.
+```
+
+[Listen to the result.](examples/010-chess-cello/track_03.mp3)
 
 ## Use Any Coding Agent
 
@@ -95,7 +142,7 @@ All compositions from all experiments, including the bad ones. Download and list
 
 **[005 — Blind A/B/C](examples/005-blind-abc/)**: 3 songs × 3 conditions (baseline, profile feedback, XGBoost feedback). Solo piano prelude, piano waltz, violin+piano duet. The experiment that validated profile feedback.
 
-**[007 — Canonical Targets](examples/007-canonical-targets/)**: 4 tracks. Clarinet + piano, targeting Beethoven-level feature counts. The "clownhouse" experiment — numerically correct, musically empty.
+**[007 — Canonical Targets](examples/007-canonical-targets/)**: 4 tracks. Clarinet + piano, targeting Beethoven-level feature counts. The "clownhouse" experiment — numerically correct, musically empty. [Listen to the clownhouse track.](examples/007-canonical-targets/track_04.mp3)
 
 **[008 — Canonical Principles](examples/008-canonical-principles/)**: 2 tracks. Same bakery vibe, with compositional wisdom injected into the prompt. Also bad.
 

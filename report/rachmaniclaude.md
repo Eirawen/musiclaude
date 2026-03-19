@@ -110,7 +110,7 @@ Four compositions of the same piece with different profiles. Blind listening.
 
 **The canonical profiles bombed.** The listener described one as:
 
-> *"It's almost like a clownhouse. Like something that would play in a horror film as a group of clowns gets ready to slaughter their unsuspecting audience."*
+> *"It's almost like a clownhouse. Like something that would play in a horror film as a group of clowns gets ready to slaughter their unsuspecting audience."* — [listen for yourself](../examples/007-canonical-targets/track_04.mp3)
 
 The LLM hit Beethoven's dynamics count on paper but produced incoherent music. **The competence ceiling problem:** hitting high feature counts without the underlying compositional skill produces music that's numerically correct but musically empty.
 
@@ -181,6 +181,38 @@ This means the profile feedback is working partly as a proxy: telling the LLM "a
 ### Instrumentation is the biggest lever
 
 Changing from clarinet to cello made a dramatic difference under identical conditions. Going from duo to full orchestra was even worse. The LLM writes idiomatically for some instruments and poorly for others. Two parts is the sweet spot.
+
+### The agent thinks like a composer when you let it
+
+Here are the unedited revision notes from one of the best compositions ([experiment 010, track 03](../experiment/010/track_03/notes.md)). This is the agent deciding what feedback to accept and reject:
+
+---
+
+#### What It Incorporated
+
+1. **Hairpin count (0 -> 5)**: Added crescendo and diminuendo hairpins in the cello (mm. 10, 29, 39) and piano (mm. 29-30). These genuinely improve the phrasing — the crescendo into the gambit's peak and the diminuendo into the endgame's reflection are more expressive now.
+
+2. **Range utilization (0.264 -> 0.305)**: Extended the cello down to C2 (open string, m. 41) and up to A5 (stratosphere, m. 30 — the peak of the gambit). Extended piano RH up to A5/G5 in the endgame climax (m. 37), and piano LH down to D1 for the final note (m. 50). These extensions are dramatic moments that earn the extreme registers.
+
+3. **Groove consistency (partial)**: Regularized the piano LH in Section A to a consistent bass-fifth-octave waltz pattern, and Section B to a consistent staccato bass-fifth-rest pattern. This makes the piano's role as "the board" more stable — the consistency lets the cello's expressive freedom stand out against it.
+
+4. **Piano voice leading**: Smoothed out LH leaps in the gambit section (mm. 25-32) with more stepwise motion and consistent waltz shapes.
+
+5. **Expression count**: Added fermatas (on cello m. 2, m. 50; piano chord m. 50) and a trill (cello m. 28, the suspense moment). The feature extractor counts only stream-level Expression objects and misses note-attached expressions, so the metric didn't change, but the music has them.
+
+#### What It Rejected
+
+1. **Modulation count (5 vs target 10)**: The piece has clear key areas — D minor, F major tonicization, Bb major gambit, return to D minor, Picardy to D major. Ten modulations in 50 measures would make it frantic. The chess game is focused and deliberate, not a tour of key signatures.
+
+2. **Phrase length regularity (0.753 vs target 0.992)**: The sections are 12+12+8+12+6 measures. The 8-bar gambit is intentionally short — it's a surprise move, quick and decisive. The 6-bar coda is a handshake — warm, brief, final. Forcing 4/8-bar regularity would kill the narrative pacing.
+
+3. **Groove consistency (remaining gap, 0.784 vs 0.839)**: The cello is a singing melodic voice — its rhythmic variety is the whole point. The model wants all parts to have regular rhythmic patterns, but that would turn the cello into an accompaniment instrument. The piano provides the rhythmic backbone; the cello provides the soul.
+
+4. **Scale consistency (0.932)**: Already above the target median (0.914). The model still lists it as a suggestion, but no action needed.
+
+---
+
+[Listen to the result.](../examples/010-chess-cello/track_03.mp3)
 
 ### The canonical profile works — when you don't straitjacket it
 
