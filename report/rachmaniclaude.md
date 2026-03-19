@@ -8,6 +8,7 @@ Our best piece was produced by the simplest possible setup: a one-sentence vibe 
 
 ## Examples on Soundcloud (also in this repository)
 [Claude's Chess Wager](https://soundcloud.com/khaled-messai-665379541/claudes-the_wager?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=b7ba9e9fdb9a4c5ab34bb5da8f694c91)
+
 [Claude's Piano Waltz](https://soundcloud.com/khaled-messai-665379541/claudes-piano_waltz?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=9659beb362f2436da33da3dc205ccbfc) 
 
 ---
