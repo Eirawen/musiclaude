@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN"
+  "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <work>
+    <work-title>Prelude in Eb Major</work-title>
+  </work>
+  <identification>
+    <creator type="composer">MusicLaude</creator>
+  </identification>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Piano</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>1</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+
+    <!-- ============================================================ -->
+    <!-- SECTION A: Opening Statement (mm 1-4) — Eb major, mp, 72 BPM -->
+    <!-- ============================================================ -->
+
+    <!-- Measure 1: Eb maj7 — stepwise scalar rise over bass Eb -->
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>-3</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <staves>2</staves>
+        <clef number="1"><sign>G</sign><line>2</line></clef>
+        <clef number="2"><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <!-- Tempo: Andante cantabile, 72 BPM -->
+      <direction placement="above">
+        <direction-type>
+          <words default-y="15" font-style="italic">Andante cantabile</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>72</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="72"/>
+      </direction>
+      <!-- Dynamic: mp -->
+      <direction placement="below">
+        <direction-type><dynamics><mp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="54"/>
+      </direction>
+      <!-- Treble: voice 1 — scalar rise Eb4-F4-G4-Ab4, then Bb4 quarter, Ab4-G4 eighths, F4 quarter -->
+      <!-- Eb4(2) F4(2) G4(2) Ab4(2) Bb4(4) Ab4(2) G4(2) = 16 — all stepwise! -->
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+2+2+4+2+2 = 16 -->
+
+      <!-- Bass: voice 2 — sustained Eb -->
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 2: Ab maj — scalar flow, gentle rise and fall -->
+    <measure number="2">
+      <!-- Hairpin crescendo start -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Ab4(2) Bb4(2) C5(4) Bb4(2) Ab4(2) G4(4) = 16 — stepwise -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+4+2+2+4 = 16 -->
+
+      <!-- Bass: voice 2 — Ab bass -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>12</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 12+4 = 16 -->
+    </measure>
+
+    <!-- Measure 3: Fm9 — scalar motion continues -->
+    <measure number="3">
+      <!-- Treble: voice 1 -->
+      <!-- F4(2) G4(2) Ab4(2) Bb4(2) C5(4) Bb4(2) Ab4(2) = 16 — stepwise -->
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+2+2+4+2+2 = 16 -->
+
+      <!-- Bass: voice 2 — F bass -->
+      <note>
+        <pitch><step>F</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 4: Bb7 to Eb — half cadence, scalar descent -->
+    <measure number="4">
+      <!-- Hairpin crescendo stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Bb4+D5 quarter (4), C5(2) Bb4(2), Ab4+G4 half (8) = 16 -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 4+2+2+8 = 16 -->
+
+      <!-- Bass: voice 2 -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- ============================================================ -->
+    <!-- SECTION B: Development (mm 5-8) — more motion, mf -->
+    <!-- ============================================================ -->
+
+    <!-- Measure 5: Cm7 — development begins, stepwise eighths -->
+    <measure number="5">
+      <!-- Dynamic: mf -->
+      <direction placement="below">
+        <direction-type><dynamics><mf/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="80"/>
+      </direction>
+      <!-- Treble: voice 1 — scalar rise and fall -->
+      <!-- C5(2) D5(2) Eb5(2) D5(2) C5(2) Bb4(2) Ab4(4) = 16 — all stepwise -->
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+2+2+2+2+4 = 16 -->
+
+      <!-- Bass: voice 2 — C bass -->
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>12</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 12+4 = 16 -->
+    </measure>
+
+    <!-- Measure 6: F9 — moving toward Bb, scalar -->
+    <measure number="6">
+      <!-- Hairpin crescendo -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Ab4(2) Bb4(2) C5(2) D5(2) Eb5(4) D5(2) C5(2) = 16 — stepwise -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+2+2+4+2+2 = 16 -->
+
+      <!-- Bass: voice 2 — F bass -->
+      <note>
+        <pitch><step>F</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 7: Bb major — arrival, scalar with one expressive leap -->
+    <measure number="7">
+      <!-- Hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Bb4+D5 dotted-quarter (6), Eb5(2), F5(4), Eb5(4) = 16 -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 6+2+4+4 = 16 -->
+
+      <!-- Bass: voice 2 — Bb bass (raised from Bb1 to Bb2) -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 8: Eb/Bb to Gm7 — transition back, stepwise descent -->
+    <measure number="8">
+      <!-- Hairpin diminuendo -->
+      <direction placement="below">
+        <direction-type><wedge type="diminuendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Eb5(2) D5(2) C5(2) Bb4(2) G4+Bb4+D5 half (8) = 16 — stepwise run into chord -->
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+2+2+8 = 16 -->
+
+      <!-- Hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+
+      <!-- Bass: voice 2 — Bb pedal to G -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- ============================================================ -->
+    <!-- SECTION C: Climax (mm 9-12) — richer chords, f, 68 BPM -->
+    <!-- ============================================================ -->
+
+    <!-- Measure 9: Ab maj9 — climax begins, forte -->
+    <measure number="9">
+      <!-- Tempo: broader at 68 -->
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>68</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="68"/>
+      </direction>
+      <!-- Dynamic: f -->
+      <direction placement="below">
+        <direction-type><dynamics><f/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="96"/>
+      </direction>
+      <!-- Treble: voice 1 — Ab chord then stepwise descent -->
+      <!-- Ab4+C5+Eb5 quarter (4), D5(2) C5(2), Bb4+D5 half (8) = 16 -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 4+2+2+8 = 16 -->
+
+      <!-- Bass: voice 2 — Ab sustained -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+4+4 = 16 -->
+    </measure>
+
+    <!-- Measure 10: Db maj7 — Neapolitan color, scalar motion -->
+    <measure number="10">
+      <!-- Hairpin crescendo for climax peak -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Db5+F5 dotted-quarter (6), Eb5(2), D5(2) C5(2), Bb4(4) = 16 -->
+      <note>
+        <pitch><step>D</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <!-- total voice 1: 6+2+2+2+4 = 16 -->
+
+      <!-- Bass: voice 2 — Db bass -->
+      <note>
+        <pitch><step>D</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>12</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 12+4 = 16 -->
+    </measure>
+
+    <!-- Measure 11: Bb7(b9) — dominant tension, peak, scalar -->
+    <measure number="11">
+      <!-- Hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamic: ff at peak -->
+      <direction placement="below">
+        <direction-type><dynamics><ff/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="112"/>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Bb4+D5 quarter (4), Eb5(2) F5(2), Eb5+D5 half (8) = 16 -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 4+2+2+8 = 16 -->
+
+      <!-- Hairpin diminuendo start on beat 3 -->
+      <direction placement="below">
+        <direction-type><wedge type="diminuendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+
+      <!-- Bass: voice 2 (raised from Bb1 to Bb2) -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 12: Eb maj7 — climax resolves, narrower chord -->
+    <measure number="12">
+      <!-- Hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Bb4+Eb5+G5 dotted-half (12), F5 quarter (4) = 16 — warm voicing -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot/>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 12+4 = 16 -->
+
+      <!-- Bass: voice 2 — Eb sustained -->
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>16</duration>
+        <voice>2</voice>
+        <type>whole</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 16 -->
+    </measure>
+
+    <!-- ============================================================ -->
+    <!-- SECTION D: Coda (mm 13-16) — return to Eb, dying away, pp -->
+    <!-- ============================================================ -->
+
+    <!-- Measure 13: Ab maj7 — coda, a tempo 72 -->
+    <measure number="13">
+      <!-- Tempo: a tempo 72 -->
+      <direction placement="above">
+        <direction-type>
+          <words default-y="15" font-style="italic">a tempo</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>72</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="72"/>
+      </direction>
+      <!-- Dynamic: p -->
+      <direction placement="below">
+        <direction-type><dynamics><p/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="49"/>
+      </direction>
+      <!-- Treble: voice 1 — scalar, echoing opening -->
+      <!-- Ab4(2) Bb4(2) C5(4) Bb4(2) Ab4(2) G4(4) = 16 — all stepwise -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 2+2+4+2+2+4 = 16 -->
+
+      <!-- Bass: voice 2 -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>12</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 12+4 = 16 -->
+    </measure>
+
+    <!-- Measure 14: Fm7 — gentle continuation, stepwise -->
+    <measure number="14">
+      <!-- Hairpin diminuendo toward ending -->
+      <direction placement="below">
+        <direction-type><wedge type="diminuendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- F4+Ab4 quarter (4), Bb4(2) Ab4(2), G4+Bb4 half (8) = 16 -->
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 4+2+2+8 = 16 -->
+
+      <!-- Bass: voice 2 -->
+      <note>
+        <pitch><step>F</step><octave>2</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 8+8 = 16 -->
+    </measure>
+
+    <!-- Measure 15: Bb7sus4 to Bb7 — penultimate, dying away -->
+    <measure number="15">
+      <!-- Hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamic: pp -->
+      <direction placement="below">
+        <direction-type><dynamics><pp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="36"/>
+      </direction>
+      <!-- Treble: voice 1 -->
+      <!-- Eb5+Ab4 dotted-quarter (6), D5(2), C5+Eb5 half (8) = 16 -->
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 6+2+8 = 16 -->
+
+      <!-- Bass: voice 2 -->
+      <note>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>16</duration>
+        <voice>2</voice>
+        <type>whole</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 16 -->
+    </measure>
+
+    <!-- Measure 16: Eb maj9 — final chord with fermata, ppp -->
+    <measure number="16">
+      <!-- Dynamic: ppp for final -->
+      <direction placement="below">
+        <direction-type><dynamics><ppp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="24"/>
+      </direction>
+      <!-- Treble: voice 1 — final Eb maj9 chord, whole note with fermata -->
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+        <staff>1</staff>
+        <notations>
+          <fermata type="upright"/>
+        </notations>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+        <staff>1</staff>
+      </note>
+      <!-- total voice 1: 16 -->
+
+      <!-- Bass: voice 2 — low Eb with fermata -->
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>16</duration>
+        <voice>2</voice>
+        <type>whole</type>
+        <staff>2</staff>
+        <notations>
+          <fermata type="upright"/>
+        </notations>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>16</duration>
+        <voice>2</voice>
+        <type>whole</type>
+        <staff>2</staff>
+      </note>
+      <!-- total voice 2: 16 -->
+
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+      </barline>
+    </measure>
+
+  </part>
+</score-partwise>

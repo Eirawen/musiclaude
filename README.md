@@ -24,14 +24,8 @@ Pre-trained models ship in `models/` — you're ready to compose immediately.
 
 Open Claude Code in the repo and run:
 
-```bash
-
-~/musiclaude claude
-
-/compose-minimal your example here
-
+```
 /compose-minimal A chess game between old friends in a park
-
 ```
 
 That's it. Claude will:
@@ -85,23 +79,31 @@ musescore3 output/score.musicxml
 
 ## Examples
 
-### "The Wager" — Cello + Piano
+Highlights up top, then everything from every experiment — good and bad. All files are MusicXML + MP3.
 
-*A chess game between old friends in a park — the stakes are a bottle of wine.*
+### Highlights
 
-- Score: [`examples/the_wager.musicxml`](examples/the_wager.musicxml) | Audio: [`examples/the_wager.mp3`](examples/the_wager.mp3)
+| Piece | Instrumentation | Vibe |
+|-------|----------------|------|
+| [The Wager](examples/the_wager.mp3) ([score](examples/the_wager.musicxml)) | Cello + Piano | A chess game between old friends in a park |
+| [Piano Waltz](examples/piano_waltz.mp3) ([score](examples/piano_waltz.musicxml)) | Solo Piano | The piece that proved the feedback loop works |
+| [Matin de Boulangerie](examples/matin_de_boulangerie.mp3) ([score](examples/matin_de_boulangerie.musicxml)) | Clarinet + Piano | First love at 17, summer bakery — the clarinet doesn't quite work |
 
-### "Piano Waltz" — Solo Piano
+### Everything Else
 
-*The piece that proved the feedback loop works — from experiment 005's blind A/B/C test.*
+All compositions from all experiments, including the bad ones. Download and listen — form your own opinions.
 
-- Score: [`examples/piano_waltz.musicxml`](examples/piano_waltz.musicxml) | Audio: [`examples/piano_waltz.mp3`](examples/piano_waltz.mp3)
+**[005 — Blind A/B/C](examples/005-blind-abc/)**: 3 songs × 3 conditions (baseline, profile feedback, XGBoost feedback). Solo piano prelude, piano waltz, violin+piano duet. The experiment that validated profile feedback.
 
-### "Matin de Boulangerie" — Clarinet + Piano
+**[007 — Canonical Targets](examples/007-canonical-targets/)**: 4 tracks. Clarinet + piano, targeting Beethoven-level feature counts. The "clownhouse" experiment — numerically correct, musically empty.
 
-*First love at 17, summer in a French village, working at a bakery. An example of the clarinet not quite working — the model struggles with wind instrument idiom in a way it doesn't with strings or piano.*
+**[008 — Canonical Principles](examples/008-canonical-principles/)**: 2 tracks. Same bakery vibe, with compositional wisdom injected into the prompt. Also bad.
 
-- Score: [`examples/matin_de_boulangerie.musicxml`](examples/matin_de_boulangerie.musicxml) | Audio: [`examples/matin_de_boulangerie.mp3`](examples/matin_de_boulangerie.mp3)
+**[009 — Minimal Prompting, Clarinet](examples/009-minimal-clarinet/)**: 4 tracks. Clarinet + piano, one-sentence vibe, 2×2 design. The music improved dramatically but the clarinet writing is rough.
+
+**[010 — Chess Game, Cello](examples/010-chess-cello/)**: 4 tracks. Cello + piano, same minimal approach. The best experiment — switching to cello made all the difference.
+
+**[011 — JRPG Orchestra](examples/011-jrpg-orchestra/)**: 4 tracks. Full orchestra (6-9 parts), Final Fantasy main menu theme. The orchestration ceiling — every agent independently chose full orchestra and every result was bad.
 
 ## The Research
 
@@ -122,7 +124,7 @@ musescore3 output/score.musicxml
 
 **An honest caveat about the features:** the top predictors (dynamics count, hairpins, articulation variety) are confounded — better composers naturally use more of these markings, so the features correlate with quality but don't necessarily *cause* it. Telling the LLM "add more hairpins" works to some degree because it forces the model to think about expression, but it's not the same as genuine musical intent. The profile is a useful proxy, not ground truth.
 
-Read the [full report](report/musiclaude.md) for the complete story.
+Read the [full report](report/rachmaniclaude.md) for the complete story.
 
 ## Retraining Models (Optional)
 

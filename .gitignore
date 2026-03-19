@@ -29,6 +29,8 @@ htmlcov/
 *.mxl
 *.musicxml
 !tests/fixtures/*.musicxml
+!examples/**/*.musicxml
+!examples/**/*.mp3
 !examples/*.musicxml
 !examples/*.mp3
 models/*.csv

@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN"
+  "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <work>
+    <work-title>Piano Waltz in A Major</work-title>
+  </work>
+  <identification>
+    <creator type="composer">MusicLaude</creator>
+  </identification>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Piano</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>1</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <!-- ==================== MEASURE 1 (A section, I chord: A major) ==================== -->
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>3</fifths></key>
+        <time><beats>3</beats><beat-type>4</beat-type></time>
+        <staves>2</staves>
+        <clef number="1"><sign>G</sign><line>2</line></clef>
+        <clef number="2"><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <!-- Tempo marking -->
+      <direction placement="above">
+        <direction-type>
+          <words default-y="20" font-size="12" font-weight="bold">Tempo di Valse</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>138</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="138"/>
+      </direction>
+      <!-- Dynamics: p -->
+      <direction placement="below">
+        <direction-type><dynamics><p/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="54"/>
+      </direction>
+      <!-- TREBLE (Staff 1): pickup-style opening, quarter rest then melody -->
+      <!-- Beat 1: quarter rest -->
+      <note>
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- Beat 2: E5 eighth -->
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <!-- Beat 2+: F#5 eighth -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <!-- Beat 3: A5 quarter -->
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <!-- BACKUP to write staff 2 -->
+      <backup><duration>12</duration></backup>
+      <!-- BASS (Staff 2): A3 bass note + A3-C#4-E4 chord pattern -->
+      <!-- Beat 1: A3 quarter (staccato) — raised from A2 to narrow range -->
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <!-- Beat 2: C#4-E4 chord quarter -->
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <!-- Beat 3: C#4-E4 chord quarter -->
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 2 (I chord continuing) ==================== -->
+    <measure number="2">
+      <!-- TREBLE: G#5 dotted quarter, F#5 eighth, E5 quarter -->
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: A3 + chord + chord (I) -->
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 3 (IV chord: D major) ==================== -->
+    <measure number="3">
+      <!-- Hairpin crescendo start for musical shape -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- TREBLE: D5 quarter, E5 eighth, F#5 eighth, A5 quarter -->
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: F#3 + D4-F#3-A3 chord (IV, 1st inversion for tighter range) -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 4 (V chord: E major) ==================== -->
+    <measure number="4">
+      <!-- Crescendo hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamics: mp -->
+      <direction placement="below">
+        <direction-type><dynamics><mp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="64"/>
+      </direction>
+      <!-- TREBLE: G#5 dotted quarter, E5 eighth, B4 quarter -->
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: E3 + E3-G#3-B3 chord (V) -->
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 5 (I chord: A major - melody continues) ==================== -->
+    <measure number="5">
+      <!-- Dynamics: p (return) -->
+      <direction placement="below">
+        <direction-type><dynamics><p/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="54"/>
+      </direction>
+      <!-- TREBLE: A4 quarter, C#5 eighth, E5 eighth, F#5 quarter -->
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: A3 + chord (I) -->
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 6 (vi chord: F# minor) ==================== -->
+    <measure number="6">
+      <!-- TREBLE: E5 dotted quarter, D5 eighth, C#5 quarter -->
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: F#3 + F#3-A3-C#4 chord (vi) — raised from F#2 -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 7 (ii chord: B minor, crescendo) ==================== -->
+    <measure number="7">
+      <!-- Crescendo hairpin start -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- TREBLE: B4 quarter, D5 quarter, F#5 quarter -->
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: B3 + B3-D4-F#4 chord (ii) — raised from B2 -->
+      <note>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>F</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>F</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 8 (V chord: E major, half cadence) ==================== -->
+    <measure number="8">
+      <!-- Crescendo hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamics: mf -->
+      <direction placement="below">
+        <direction-type><dynamics><mf/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="80"/>
+      </direction>
+      <!-- TREBLE: E5 dotted quarter, D5 eighth, B4 quarter -->
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: E3 + E3-G#3-B3 (V) -->
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 9 (B section, IV chord: D major, f) ==================== -->
+    <measure number="9">
+      <!-- Dynamics: f for B section contrast -->
+      <direction placement="below">
+        <direction-type><dynamics><f/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="96"/>
+      </direction>
+      <!-- TREBLE: F#5 quarter (accented), A5 eighth, F#5 eighth, D5 quarter -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+          <articulations><accent/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: F#3 + A3-D4 (IV, 1st inversion) -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 10 (V chord: E major) ==================== -->
+    <measure number="10">
+      <!-- Decrescendo hairpin start -->
+      <direction placement="below">
+        <direction-type><wedge type="diminuendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- TREBLE: E5 dotted quarter, G#5 eighth, E5 quarter — lowered B5 to E5 -->
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: E3 + E3-G#3-B3 (V) -->
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 11 (vi chord: F# minor) ==================== -->
+    <measure number="11">
+      <!-- Decrescendo hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamics: mp -->
+      <direction placement="below">
+        <direction-type><dynamics><mp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="64"/>
+      </direction>
+      <!-- TREBLE: A5 quarter (accented), F#5 eighth, E5 eighth, C#5 quarter -->
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <articulations><accent/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: F#3 + A3-C#4 (vi) — raised from F#2 -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 12 (V7 chord: E7, transition back) ==================== -->
+    <measure number="12">
+      <!-- TREBLE: B4 eighth, D5 eighth, E5 quarter, G#4 quarter -->
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: E3 + E3-G#3-B3-D4 (V7) -->
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 13 (A' return, I chord, p) ==================== -->
+    <measure number="13">
+      <!-- Dynamics: p -->
+      <direction placement="below">
+        <direction-type><dynamics><p/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="54"/>
+      </direction>
+      <!-- TREBLE: E5 eighth, F#5 eighth, A5 quarter, E5 quarter — same as original m13 -->
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: A3 + chord (I) -->
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 14 (IV chord: D major) ==================== -->
+    <measure number="14">
+      <!-- Crescendo hairpin start -->
+      <direction placement="below">
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- TREBLE: D5 dotted quarter, C#5 eighth, A4 quarter -->
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: F#3 + A3-D4 (IV, 1st inversion) -->
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 15 (V chord: E major - authentic cadence setup) ==================== -->
+    <measure number="15">
+      <!-- Crescendo hairpin stop -->
+      <direction placement="below">
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <!-- Dynamics: mf -->
+      <direction placement="below">
+        <direction-type><dynamics><mf/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="80"/>
+      </direction>
+      <!-- TREBLE: G#4 eighth, B4 eighth, E5 dotted quarter, D5 eighth -->
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <staff>1</staff>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: E3 + E3-G#3-B3 (V) — raised from E2 -->
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+        <notations>
+          <articulations><staccato/></articulations>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <staff>2</staff>
+      </note>
+    </measure>
+
+    <!-- ==================== MEASURE 16 (I chord: A major - final, pp, authentic cadence resolution) ==================== -->
+    <measure number="16">
+      <!-- rit. marking -->
+      <direction placement="above">
+        <direction-type>
+          <words default-y="20" font-size="10" font-style="italic">rit.</words>
+        </direction-type>
+      </direction>
+      <!-- Dynamics: pp -->
+      <direction placement="below">
+        <direction-type><dynamics><pp/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="36"/>
+      </direction>
+      <!-- TREBLE: C#5 quarter, A4 half (resolving to tonic) -->
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+        <notations>
+          <slur type="stop" number="1"/>
+          <fermata/>
+        </notations>
+      </note>
+      <backup><duration>12</duration></backup>
+      <!-- BASS: A3 dotted half (sustained tonic) — raised from A2 -->
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>12</duration>
+        <voice>3</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+        <notations>
+          <fermata/>
+        </notations>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>12</duration>
+        <voice>3</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>12</duration>
+        <voice>3</voice>
+        <type>half</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
