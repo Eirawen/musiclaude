@@ -2,7 +2,7 @@
 
 Language model music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
 
-**Best result:** 90/100 in a blind listening test, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/rachmaniclaude.md).
+**Best result:** a blind listening test favorite, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/rachmaniclaude.md).
 
 ## Get Started
 
@@ -24,8 +24,14 @@ Pre-trained models ship in `models/` — you're ready to compose immediately.
 
 Open Claude Code in the repo and run:
 
-```
+```bash
+
+~/musiclaude claude
+
+/compose-minimal your example here
+
 /compose-minimal A chess game between old friends in a park
+
 ```
 
 That's it. Claude will:
@@ -40,9 +46,9 @@ Your score lands in `output/` as both `.musicxml` and `.mp3`.
 ### What We Learned 
 
 After 11 experiments and a lot of blind listening:
-- **2-3 parts max** — duos avg 87/100, full orchestra avg 68/100. The LLM can't orchestrate.
+- **2-3 parts max** — duos sound good, full orchestra falls apart. The LLM can't orchestrate.
 - **Cello+piano is the sweet spot for duets**
-- **Feedback as suggestions, not mandates** — the agent must be instructed that it can freely reject validator advice 
+- **Feedback as suggestions, not mandates** — the agent must be instructed that it can freely reject validator advice
 - **One revision round** — more iterations degrade quality.
 - **Less constraint = better music** — rigid pipelines, contracts, and mandatory targets all make things worse
 
@@ -77,30 +83,25 @@ Every `.musicxml` file opens in [MuseScore](https://musescore.org) — see the f
 musescore3 output/score.musicxml
 ```
 
-## Best Examples
+## Examples
 
-Listen for yourself:
-
-### "The Wager" — Cello + Piano (90/100)
+### "The Wager" — Cello + Piano
 
 *A chess game between old friends in a park — the stakes are a bottle of wine.*
 
 - Score: [`examples/the_wager.musicxml`](examples/the_wager.musicxml) | Audio: [`examples/the_wager.mp3`](examples/the_wager.mp3)
-- *"This genuinely sounds like a composed piece. The cello line has real melodic identity."*
 
-### "The Bottle Gambit" — Cello + Piano (88/100)
+### "Piano Waltz" — Solo Piano
 
-*Same vibe, different agent run, autonomous feedback decisions.*
+*The piece that proved the feedback loop works — from experiment 005's blind A/B/C test.*
 
-- Score: [`examples/the_bottle_gambit.musicxml`](examples/the_bottle_gambit.musicxml) | Audio: [`examples/the_bottle_gambit.mp3`](examples/the_bottle_gambit.mp3)
-- *"Lovely interplay between the parts. Feels like chamber music."*
+- Score: [`examples/piano_waltz.musicxml`](examples/piano_waltz.musicxml) | Audio: [`examples/piano_waltz.mp3`](examples/piano_waltz.mp3)
 
-### "Matin de Boulangerie" — Clarinet + Piano (83/100)
+### "Matin de Boulangerie" — Clarinet + Piano
 
-*First love at 17, summer in a French village, working at a bakery.*
+*First love at 17, summer in a French village, working at a bakery. An example of the clarinet not quite working — the model struggles with wind instrument idiom in a way it doesn't with strings or piano.*
 
 - Score: [`examples/matin_de_boulangerie.musicxml`](examples/matin_de_boulangerie.musicxml) | Audio: [`examples/matin_de_boulangerie.mp3`](examples/matin_de_boulangerie.mp3)
-- *"Has a real sense of place. The clarinet is charming."*
 
 ## The Research
 
@@ -109,17 +110,19 @@ Listen for yourself:
 | Exp | What We Tested | Result |
 |-----|---------------|--------|
 | 001-004 | Feature extraction + classifier training | 60.2% accuracy, dynamics_count is #1 predictor |
-| 005 | Blind A/B/C: profile vs XGBoost vs baseline | **Profile feedback wins** (+7 over baseline) |
+| 005 | Blind A/B/C: profile vs XGBoost vs baseline | **Profile feedback wins** over both alternatives |
 | 006 | Canonical MusicXML corpus (2,871 pieces) | v3 profile built, 900% more hairpins than PDMX |
 | 007 | Canonical feature targets | **REJECTED** — "clownhouse" music. The competence ceiling. |
 | 008 | Canonical principles in prompt | **REJECTED** — "listening to nothing." Same problem. |
 | 009 | Minimal prompting, 2x2 design | Minimal prompting works. Clarinet is weak. |
-| 010 | Cello+piano, chess game vibe | **90/100!** Best result. v3 profile wins. |
+| 010 | Cello+piano, chess game vibe | **Best result.** v3 profile wins. |
 | 011 | JRPG theme, free instrumentation | Full orchestra fails. 2 parts >> 6+ parts. |
 
 **The central finding:** the less you constrain the LLM, the better it composes.
 
-Read the [full report](report/rachmaniclaude.md) for the complete story.
+**An honest caveat about the features:** the top predictors (dynamics count, hairpins, articulation variety) are confounded — better composers naturally use more of these markings, so the features correlate with quality but don't necessarily *cause* it. Telling the LLM "add more hairpins" works to some degree because it forces the model to think about expression, but it's not the same as genuine musical intent. The profile is a useful proxy, not ground truth.
+
+Read the [full report](report/musiclaude.md) for the complete story.
 
 ## Retraining Models (Optional)
 
@@ -128,8 +131,8 @@ The shipped models work out of the box. If you want to retrain on your own data:
 ```bash
 # Download PDMX from https://zenodo.org/records/14648209
 # Place PDMX.csv in data/, extract mxl.tar.gz into data/
-rachmaniclaude-extract --data-dir data/ --output features.csv
-rachmaniclaude-train --features features.csv --output models/
+musiclaude-extract --data-dir data/ --output features.csv
+musiclaude-train --features features.csv --output models/
 ```
 
 To rebuild the canonical profile from source corpora, see `codex/experiments/006-canonical-corpus-pipeline.md`.
@@ -137,7 +140,7 @@ To rebuild the canonical profile from source corpora, see `codex/experiments/006
 ## Project Structure
 
 ```
-rachmaniclaude/
+musiclaude/
   features/         Feature extraction from MusicXML (42+ features)
   classifier/        Quality models (profile, XGBoost, Isolation Forest)
   validator/         Music theory structural validation

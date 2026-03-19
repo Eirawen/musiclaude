@@ -4,7 +4,7 @@
 
 Rachmaniclaude is a system where an LLM (Claude) composes music as MusicXML notation, a quality assessment pipeline trained on 250K+ human-rated scores provides feedback, and the LLM decides whether to revise. Over 11 experiments across two days, we discovered that **the less you constrain the LLM, the better it composes** — and that the choice of instrument matters more than anything else we tested.
 
-Our best piece scored 90/100 in a blind listening test. It was produced by the simplest possible setup: a one-sentence vibe ("a chess game between old friends in a park"), cello + piano, and one round of advisory feedback.
+Our best piece was produced by the simplest possible setup: a one-sentence vibe ("a chess game between old friends in a park"), cello + piano, and one round of advisory feedback.
 
 ---
 
@@ -96,7 +96,7 @@ Four experiments refined the feature pipeline. Key finding: dynamics_count is th
 
 Three songs, three conditions each: no feedback, XGBoost feedback, profile feedback. Blind listening.
 
-**Profile feedback won** — avg +7 points over baseline vs +1.3 for XGBoost. The listener praised profile-revised pieces for "subtle touches" and "actual style." This set the profile as the default.
+**Profile feedback won** — comfortably ahead of both XGBoost and baseline. The listener praised profile-revised pieces for "subtle touches" and "actual style." The profile-revised piano waltz was the standout of the whole experiment. This set the profile as the default.
 
 What we didn't appreciate at the time: the compositions were generated with minimal constraints. That turned out to matter more than the feedback itself.
 
@@ -134,7 +134,7 @@ We stripped everything: one-sentence vibe, no contract, no template, 2×2 design
 
 Same 2×2 design but cello + piano instead of clarinet, new vibe: "chess game between old friends in a park."
 
-**Best results in the project.** All four tracks scored 85-90. The v3 canonical profile — the same one that produced "clownhouse" music in 007 — won with 90/100.
+**Best results in the project.** The v3 canonical profile — the same one that produced "clownhouse" music in 007 — won clearly.
 
 ![2×2 Heatmaps](../analysis/plots/11_instrumentation_heatmap.png)
 *Changing the instrument (left → right) was worth more than any profile or workflow change.*
@@ -151,14 +151,14 @@ JRPG main menu theme, free instrumentation choice. All four agents independently
 
 The LLM knows the *vocabulary* of orchestration from text descriptions ("Uematsu uses harp arpeggios over sustained strings") but can't manage vertical relationships between 6+ simultaneous voices. It's reconstructing what orchestral music *should look like as notation* from descriptions of what it *sounds like* — without much (if any) actual MusicXML in its training data.
 
-| Instrumentation | Parts | Avg Score |
+| Instrumentation | Parts | Quality |
 |----------------|-------|-----------|
-| Cello + Piano | 2 | **87** |
-| Clarinet + Piano | 2 | 71 |
-| Full Orchestra | 6-9 | 68 |
+| Cello + Piano | 2 | Best |
+| Clarinet + Piano | 2 | Middling |
+| Full Orchestra | 6-9 | Worst |
 
 ![Feature Compliance vs Listener Scores](../analysis/plots/12_competence_ceiling.png)
-*More features above median ≠ better music. The best-sounding piece (90/100) had only 33/41 features passing.*
+*More features above median ≠ better music. The best-sounding piece had only 33/41 features passing.*
 
 ---
 
@@ -170,15 +170,21 @@ Every rigid pipeline (contract → skill → forced feedback) produced worse mus
 
 ### Feature compliance ≠ musical quality
 
-The most counterintuitive finding. Pieces that hit 41/42 features were described as "clownhouse" and "listening to nothing." The piece that scored 90/100 had only 33/41 features passing. Features as mandatory targets are harmful. Features as advisory suggestions can help.
+The most counterintuitive finding. Pieces that hit 41/42 features were described as "clownhouse" and "listening to nothing." The best-sounding piece had only 33/41 features passing. Features as mandatory targets are harmful. Features as advisory suggestions can help.
+
+### The features are confounded
+
+The top predictors — dynamics count, hairpins, articulation variety — are not independent causes of quality. Better composers naturally use more dynamic markings, more expression, more varied articulations. The features correlate with quality because they're downstream of compositional skill, not because adding them mechanically makes music better.
+
+This means the profile feedback is working partly as a proxy: telling the LLM "add more hairpins" forces it to think about phrasing and expression, which incidentally improves the music. But it's not the hairpins themselves. A piece with 20 randomly placed crescendos would score well on that feature and sound terrible. The profile is a useful heuristic, not a causal model of musical quality.
 
 ### Instrumentation is the biggest lever
 
-Changing from clarinet to cello improved scores by 23% under identical conditions. Going from duo to full orchestra dropped scores by 22%. The LLM writes idiomatically for some instruments and poorly for others. Two parts is the sweet spot.
+Changing from clarinet to cello made a dramatic difference under identical conditions. Going from duo to full orchestra was even worse. The LLM writes idiomatically for some instruments and poorly for others. Two parts is the sweet spot.
 
 ### The canonical profile works — when you don't straitjacket it
 
-The v3 profile's journey: "clownhouse" (007) → "listening to nothing" (008) → competitive (009) → **winner at 90/100** (010). The profile was never wrong. The rigid pipeline was wrong.
+The v3 profile's journey: "clownhouse" (007) → "listening to nothing" (008) → competitive (009) → **clear winner** (010). The profile was never wrong. The rigid pipeline was wrong.
 
 ### The recipe
 
