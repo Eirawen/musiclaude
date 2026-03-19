@@ -2,7 +2,11 @@
 
 Language model music composition and quality assessment. Claude composes MusicXML, a feature profile trained on 250K+ human-rated scores and 2,871 canonical masterworks provides feedback, and the results are rendered to audio via MuseScore.
 
-**Best result:** a blind listening test favorite, from a one-sentence vibe prompt with one round of advisory feedback. [Full report](report/rachmaniclaude.md).
+See the [Full report](report/rachmaniclaude.md).
+
+## Examples on Soundcloud (also in this repository)
+[Claude's Chess Wager](https://soundcloud.com/khaled-messai-665379541/claudes-the_wager?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=b7ba9e9fdb9a4c5ab34bb5da8f694c91)
+[Claude's Piano Waltz](https://soundcloud.com/khaled-messai-665379541/claudes-piano_waltz?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=9659beb362f2436da33da3dc205ccbfc) 
 
 ## Get Started
 
